@@ -13,29 +13,33 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 1. 安装 Node
+      # 安装 Node (必须放在 pnpm action 之前)
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: "pnpm"
 
-      # 2. 安装 pnpm
-      - name: Setup pnpm
+      # 安装 pnpm（非常重要，否则 pnpm 不会存在于 PATH）
+      - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
           version: 9
-          run_install: false   # 我们自己写 install 步骤
+          run_install: false   # 不自动安装依赖
 
-      # 3. 安装依赖（使用锁文件）
+      # 使用 pnpm cache（可选，但推荐）
+      - name: Setup pnpm store
+        run: |
+          pnpm config set store-dir ~/.pnpm-store
+
+      # 安装依赖
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      # 4. 构建
-      - name: Build
-        run: pnpm build     # 如果你是别的命令，比如 pnpm docs:build 就改这里
+      # 构建
+      - name: Build project
+        run: pnpm build
 
-      # 5. 配置 SSH
+      # SSH 准备
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.9.0
         with:
@@ -46,7 +50,7 @@ jobs:
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
 
-      # 6. 部署到服务器（假设构建结果在 dist/ 下）
+      # 通过 rsync 部署
       - name: Deploy via rsync
         run: |
           rsync -avz --delete \
