@@ -26,11 +26,6 @@ jobs:
           version: 9
           run_install: false   # 不自动安装依赖
 
-      # 使用 pnpm cache（可选，但推荐）
-      - name: Setup pnpm store
-        run: |
-          pnpm config set store-dir ~/.pnpm-store
-
       # 安装依赖
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
