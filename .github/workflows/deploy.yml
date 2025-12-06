@@ -1,53 +1,60 @@
 name: Build and Deploy dev/hsu_blog
 
 on:
-  push:
-    branches:
-      - "dev/hsu_blog"         # 只在 dev/hsu_blog 分支 push 时触发
+    push:
+        branches:
+            - "dev/hsu_blog" # 只在 dev/hsu_blog 分支 push 时触发
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
+    build-and-deploy:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
 
-      # 安装 Node (必须放在 pnpm action 之前)
-      - name: Setup Node
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
+            # 安装 Node (必须放在 pnpm action 之前)
+            - name: Setup Node
+              uses: actions/setup-node@v4
+              with:
+                  node-version: "20"
 
-      # 安装 pnpm（非常重要，否则 pnpm 不会存在于 PATH）
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-          run_install: false   # 不自动安装依赖
+            # 安装 pnpm（非常重要，否则 pnpm 不会存在于 PATH）
+            - name: Install pnpm
+              uses: pnpm/action-setup@v4
+              with:
+                  version: 9
+                  run_install: false # 不自动安装依赖
 
-      # 安装依赖
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+            - name: Remove pnpm-workspace.yaml (if exists)
+              run: |
+                  if [ -f pnpm-workspace.yaml ]; then
+                  echo "Removing pnpm-workspace.yaml to avoid pnpm workspace errors"
+                  rm pnpm-workspace.yaml
+                  fi
 
-      # 构建
-      - name: Build project
-        run: pnpm build
+            # 安装依赖
+            - name: Install dependencies
+              run: pnpm install --frozen-lockfile
 
-      # SSH 准备
-      - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.9.0
-        with:
-          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+            # 构建
+            - name: Build project
+              run: pnpm build
 
-      - name: Add known hosts
-        run: |
-          mkdir -p ~/.ssh
-          ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+            # SSH 准备
+            - name: Setup SSH
+              uses: webfactory/ssh-agent@v0.9.0
+              with:
+                  ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
-      # 通过 rsync 部署
-      - name: Deploy via rsync
-        run: |
-          rsync -avz --delete \
-            ./dist/ \
-            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/
+            - name: Add known hosts
+              run: |
+                  mkdir -p ~/.ssh
+                  ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+
+            # 通过 rsync 部署
+            - name: Deploy via rsync
+              run: |
+                  rsync -avz --delete \
+                    ./dist/ \
+                    ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/
