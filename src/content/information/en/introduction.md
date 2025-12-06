@@ -1,9 +1,5 @@
-**ThoughtLite** is a modern [Astro](https://astro.build/) theme focused on content creation.
+**KraHsu’s Blog (The Nest of KraHsu)** is a small personal corner of the internet created by KraHsu, where I record my thoughts and musings from learning, life, and research.
 
-The author previously used a self-built theme based on [SvelteKit](https://svelte.dev/docs/kit/introduction), but due to difficulties in i18n handling, too many redundant features, and high maintenance costs, decided to migrate to Astro.
+As for me, I’m currently a Ph.D. student in Automation at Beijing Institute of Technology. My research focuses on embodied intelligence. In my spare time, I enjoy programming, writing, and spending time with my partner.
 
-The theme focuses on core content-related functions, aiming to build an **efficient and transparent** space for creation.
-
-Additionally, the theme supports modern features such as **multilingual switching**, **responsive layout**, and **dynamic content filtering**, providing users with a smooth experience.
-
-If you are interested in the theme, please visit the [**GitHub repository**](https://github.com/tuyuritio/astro-theme-thought-lite) for more information and quick start guide.
+This site shares my creations and stories — from tools and articles to everyday moments with my loved one. I hope it can bring you a little warmth too (\*^▽^\*).

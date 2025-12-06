@@ -1,6 +1,6 @@
 ## Privacy Policy
 
-> **Last Updated**: Sep 20, 2025
+> **Last Updated**: Oct 22, 2025
 
 We highly value your privacy and only collect the minimal data necessary to provide basic services. This policy explains how we collect, use, and protect your data.
 
@@ -11,9 +11,9 @@ We highly value your privacy and only collect the minimal data necessary to prov
 
 The following table provides an overview of the types of data collected, collection purposes, and storage locations:
 
-| Data Type | Collection Method | Collection Purpose | Storage Location | Notes |
-| - | - | - | - | - |
-| Theme preferences | User settings | Save interface display mode | localStorage | |
+| Data Type         | Collection Method | Collection Purpose          | Storage Location | Notes |
+| ----------------- | ----------------- | --------------------------- | ---------------- | ----- |
+| Theme preferences | User settings     | Save interface display mode | localStorage     |       |
 
 ### Data Usage Purposes
 
@@ -42,41 +42,44 @@ As a data subject, you have the following rights regarding your personal data:
 
 ## Terms of Service
 
-> **Last Updated**: Sep 20, 2025
+> **Last Updated:** Oct 22, 2025
 
-### Service Content
+### Service Description
 
-This site is a personal content creation platform based on open-source technology, primarily providing:
+This website is a personal content creation platform built on open-source technologies, primarily providing the following features:
 
-- Article reading and browsing functionality.
-- Feed subscription service.
+- Article reading and browsing  
+- Feed subscription service  
+- Online tools  
 
-### User Permission Description
+### User Rights
 
-- Browse all public content on the site.
-- Subscribe to feed.
+- Access to all publicly available content on the site  
+- Subscribe to feeds  
+- Use the online tools provided by the site  
 
 ### User Conduct Guidelines
 
-When using this site's services, you need to comply with:
+When using this website’s services, you are required to:
 
-- Respect the legitimate rights and interests of other users and content creators.
-- Do not abuse or attempt to damage this site's technical architecture.
+- Respect the legal rights of other users and content creators  
+- Not abuse or attempt to disrupt the technical infrastructure of the site  
 
 ### Intellectual Property
 
-- This site's theme is released under the [GPLv3 open-source license](https://www.gnu.org/licenses/gpl-3.0.html).
-- Original content on the site is licensed under Creative Commons license, please refer to the footer for specific license type.
-- Third-party resources follow their respective licensing agreements.
+- The theme of this site is a modified version of [Thought Lite](https://github.com/tuyuritio/astro-theme-thought-lite), which is licensed under the [GNU GPLv3 License](https://www.gnu.org/licenses/gpl-3.0.html). Therefore, the site as a whole also follows the terms of the **GPLv3** license.  
+- The online tools provided by this site are offered as **SaaS (Software as a Service)**. Since this form of use does not constitute “distribution” as defined under GPLv3, the source code availability and licensing details are specified on each tool’s information page.  
+- Original content on this site is licensed under a **Creative Commons** license. The specific license type can be found in the footer of the website.  
+- Third-party resources referenced or used on this site comply with their respective original licenses.  
 
-### Service Changes and Termination
+### Service Modifications and Termination
 
-- This site reserves the right to modify, suspend, or terminate part or all services at any time.
-- Major changes will be notified to users through site's announcements or other appropriate means.
+- This website reserves the right to modify, suspend, or terminate any part or all of its services at any time without prior notice.  
+- In the event of major changes, users will be notified via announcements on the site or through other appropriate means.  
 
 ## Disclaimer
 
-> **Last Updated**: July 27, 2025
+> **Last Updated**: Oct 22, 2025
 
 ### Content Disclaimer
 
@@ -92,7 +95,7 @@ When using this site's services, you need to comply with:
 
 ### Link Disclaimer
 
-- This site may contain links to third-party sites. This site is not responsible for the content or privacy policies of these sites.
+- This site may contain links to third-party websites. This site is not responsible for the content or privacy policies of these websites.
 - Users are responsible for their actions and consequences when clicking external links.
 
 ### Loss Disclaimer
