@@ -33,6 +33,7 @@
 		}
 
 		a {
+			color: var(--catppuccin-sapphire);
 			text-decoration: underline transparent 0.05em;
 			text-underline-offset: 0.15em;
 			transition: text-decoration-color 0.15s ease-in-out;

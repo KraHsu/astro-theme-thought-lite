@@ -110,8 +110,8 @@
 	}
 
 	*::selection {
-		color: var(--catppuccin-crust);
-		background-color: var(--catppuccin-rosewater);
+		/* color: var(--catppuccin-crust); */
+		background-color: rgb(from var(--catppuccin-overlay-2) r g b / 0.3);
 	}
 
 	*::-webkit-scrollbar {
