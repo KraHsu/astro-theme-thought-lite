@@ -1,0 +1,54 @@
+name: Build and Deploy dev/hsu_blog
+
+on:
+  push:
+    branches:
+      - "dev/hsu_blog"         # 只在 dev/hsu_blog 分支 push 时触发
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 1. 安装 Node
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      # 2. 安装 pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+          run_install: false   # 我们自己写 install 步骤
+
+      # 3. 安装依赖（使用锁文件）
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      # 4. 构建
+      - name: Build
+        run: pnpm build     # 如果你是别的命令，比如 pnpm docs:build 就改这里
+
+      # 5. 配置 SSH
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+
+      - name: Add known hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+
+      # 6. 部署到服务器（假设构建结果在 dist/ 下）
+      - name: Deploy via rsync
+        run: |
+          rsync -avz --delete \
+            ./dist/ \
+            ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/
