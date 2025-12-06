@@ -56,5 +56,6 @@ jobs:
             - name: Deploy via rsync
               run: |
                   rsync -avz --delete \
+                    --exclude='**/.user.ini' \
                     ./dist/ \
                     ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/
