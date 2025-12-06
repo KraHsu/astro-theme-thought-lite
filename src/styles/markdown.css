@@ -315,19 +315,19 @@
 		}
 
 		.markdown-alert-tip {
-			--alert-color: #48a131;
+			--alert-color: var(--catppuccin-green);
 		}
 
 		.markdown-alert-important {
-			--alert-color: #3366cc;
+			--alert-color: var(--catppuccin-blue);
 		}
 
 		.markdown-alert-warning {
-			--alert-color: #bf8700;
+			--alert-color: var(--catppuccin-yellow);
 		}
 
 		.markdown-alert-caution {
-			--alert-color: #ee3838;
+			--alert-color: var(--catppuccin-red);
 		}
 
 		.markdown-alert-note,

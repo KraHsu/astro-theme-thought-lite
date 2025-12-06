@@ -15,6 +15,7 @@
 	--color-block: var(--block-color);
 	--color-shadow: var(--shadow-color);
 	--color-selection: var(--selection-color);
+	--color-selection-bg: var(--selection-color);
 
 	/* Font families */
 	--font-serif: var(--font-serif);

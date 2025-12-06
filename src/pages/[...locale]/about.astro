@@ -26,6 +26,14 @@ const { Content: Linkroll } = linkroll ? await render(linkroll) : ({} as any);
 const chronicles = Object.entries<string[]>(chronicle ?? {})
 	.map(([date, events]) => ({ date: new Date(date), events: events ?? [] }))
 	.sort((a, b) => b.date.getTime() - a.date.getTime());
+
+const author = {
+	name: "KraHsu",
+	title: "BIT Dr.",
+	photo: "/images/author.png",
+	photo_dark: "/images/author-d.png",
+	intro: "Stay hungry, stay foolish."
+};
 ---
 
 <Base title={t("navigation.about")} {locale}>
@@ -52,10 +60,24 @@ const chronicles = Object.entries<string[]>(chronicle ?? {})
 				)
 			}
 		</article>
+		<aside class="flex flex-col justify-between basis-60 shrink-0">
+			<section class="author-card">
+				<figure class="author-card__figure">
+					<img src={author.photo} alt={`${author.name} portrait`} width="400" height="400" loading="lazy" decoding="async" class="author-card__img author-card__img--light" />
+					<img src={author.photo_dark} alt={`${author.name} portrait`} width="400" height="400" loading="lazy" decoding="async" class="author-card__img author-card__img--dark" />
+					<figcaption class="sr-only">{author.name}</figcaption>
+				</figure>
 
-		{
-			chronicles.length > 0 && (
-				<aside class="flex flex-col justify-between basis-60 shrink-0">
+				<div class="author-card__name">{author.name}</div>
+				<div class="author-card__title">{author.title}</div>
+
+				<div class="author-card__divider"></div>
+
+				<p class="author-card__intro">{author.intro}</p>
+			</section>
+
+			{
+				chronicles.length > 0 && (
 					<ul class="list-none relative before:absolute before:content-[''] before:h-full before:top-2 before:border-s-2 before:border-primary after:absolute after:content-[''] after:w-3 after:h-3 after:-bottom-2 after:-start-[0.325rem] after:border-2 after:border-primary after:rounded-full after:bg-primary">
 						{chronicles.map(chronicle => (
 							<li class="relative mb-2 pb-2 ps-3 before:absolute before:content-[''] before:w-3 before:h-3 before:top-2 before:-start-[0.325rem] before:border-2 before:border-primary before:rounded-full before:bg-background">
@@ -69,8 +91,118 @@ const chronicles = Object.entries<string[]>(chronicle ?? {})
 							</li>
 						))}
 					</ul>
-				</aside>
-			)
-		}
+				)
+			}
+		</aside>
 	</main>
 </Base>
+
+<style>
+	/* 基础样式：所有主题共用 */
+	.author-card {
+		position: relative;
+		margin-bottom: 1rem;
+		padding: 1.25rem;
+		border-radius: 1rem;
+		box-shadow:
+			0 1px 2px rgba(0, 0, 0, 0.06),
+			0 10px 30px rgba(0, 0, 0, 0.06);
+		backdrop-filter: blur(12px);
+		border: 1px solid rgba(125, 125, 125, 0.12);
+	}
+
+	.author-card__figure {
+		margin: 0;
+	}
+
+	.author-card__img {
+		display: block;
+		margin: 0 auto;
+		width: 11.25rem;
+		height: 11.25rem;
+		border-radius: 999px;
+		object-fit: cover;
+		box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+		border: 3px solid rgba(255, 255, 255, 0.85);
+	}
+
+	.author-card__name {
+		margin-top: 0.875rem;
+		margin-bottom: 0.125rem;
+		text-align: center;
+		font-weight: 700;
+		font-size: 18px;
+		letter-spacing: 0.08em;
+	}
+
+	.author-card__title {
+		text-align: center;
+		font-size: 0.92rem;
+		margin-bottom: 0.5rem;
+	}
+
+	.author-card__divider {
+		height: 1px;
+		margin: 0.75rem auto;
+		width: 85%;
+		background: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.12), transparent);
+	}
+
+	.author-card__intro {
+		text-align: center;
+		font-size: 0.95rem;
+		line-height: 1.5;
+	}
+
+	/* 默认：浅色主题 */
+	:root,
+	:root[data-theme="light"] {
+		--author-card-bg-from: rgba(255, 255, 255, 0.66);
+		--author-card-bg-to: rgba(255, 255, 255, 0.4);
+		--author-card-title-color: #6b7280; /* gray-500 */
+		--author-card-intro-color: #374151; /* gray-700 */
+		--author-card-divider-color: rgba(0, 0, 0, 0.12);
+	}
+
+	.author-card {
+		background-image: linear-gradient(to bottom, var(--author-card-bg-from), var(--author-card-bg-to));
+	}
+
+	.author-card__title {
+		color: var(--author-card-title-color);
+	}
+	.author-card__intro {
+		color: var(--author-card-intro-color);
+	}
+	.author-card__divider {
+		background: linear-gradient(to right, transparent, var(--author-card-divider-color), transparent);
+	}
+
+	/* 图片显示：浅色主题下只显示 light 版 */
+	.author-card__img--dark {
+		display: none;
+	}
+
+	/* 深色主题：data-theme="dark" 时覆盖变量 + 样式 */
+	:root[data-theme="dark"] {
+		--author-card-bg-from: rgba(17, 17, 27, 0.6); /* zinc-900/66 */
+		--author-card-bg-to: rgba(30, 30, 42, 0.4); /* zinc-900/40 */
+		--author-card-title-color: #9ca3af; /* gray-400 */
+		--author-card-intro-color: #e5e7eb; /* gray-200 */
+		--author-card-divider-color: rgba(255, 255, 255, 0.14);
+		--author-card-border-color: rgba(255, 255, 255, 0.06);
+	}
+
+	:root[data-theme="dark"] .author-card {
+		border-color: var(--author-card-border-color);
+	}
+
+	/* 深色主题下切换不同图像 */
+	:root[data-theme="dark"] .author-card__img--light {
+		display: none;
+	}
+
+	:root[data-theme="dark"] .author-card__img--dark {
+		display: block;
+	}
+</style>

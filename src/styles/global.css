@@ -7,7 +7,7 @@
 	--secondary-color-light: #50504d;
 	--remark-color-light: #757575;
 	--weak-color-light: #9f9f9c;
-	--background-color-light: #fffffd;
+	--background-color-light: var(--catppuccin-base-light);
 	--block-color-light: #eeeeee;
 	--shadow-color-light: #cdcdcc;
 	--selection-color-light: #adadacc3;
@@ -17,7 +17,7 @@
 	--secondary-color-dark: #aaaaa8;
 	--remark-color-dark: #a5a5a5;
 	--weak-color-dark: #5d5d5a;
-	--background-color-dark: #0e0e0c;
+	--background-color-dark: var(--catppuccin-base-dark);
 	--block-color-dark: #1e1e1e;
 	--shadow-color-dark: #323231;
 	--selection-color-dark: #adadacc3;
@@ -56,7 +56,7 @@
 	.astro-code,
 	.astro-code span {
 		color: var(--shiki-dark) !important;
-		background-color: var(--shiki-dark-bg) !important;
+		background-color: var(--catppuccin-mantle-dark) !important;
 	}
 }
 
@@ -95,7 +95,7 @@
 [data-theme="dark"] .astro-code,
 [data-theme="dark"] .astro-code span {
 	color: var(--shiki-dark) !important;
-	background-color: var(--shiki-dark-bg) !important;
+	background-color: var(--catppuccin-mantle-dark) !important;
 }
 
 /* Base reset styles */
@@ -110,7 +110,8 @@
 	}
 
 	*::selection {
-		background-color: var(--selection-color);
+		color: var(--catppuccin-crust);
+		background-color: var(--catppuccin-rosewater);
 	}
 
 	*::-webkit-scrollbar {

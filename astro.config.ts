@@ -6,7 +6,8 @@ import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 import tailwindcss from "@tailwindcss/vite";
 import swup from "@swup/astro";
-import githubLight from "shiki/themes/github-light.mjs";
+import catppuccinLatte from "shiki/themes/catppuccin-latte.mjs";
+import catppuccinMocha from "shiki/themes/catppuccin-mocha.mjs";
 
 import GFM from "remark-gfm";
 import ins from "remark-ins";
@@ -89,12 +90,14 @@ export default defineConfig({
 		shikiConfig: {
 			themes: {
 				light: {
-					...githubLight,
+					...catppuccinLatte,
 					colorReplacements: {
-						"#fff": "var(--block-color)"
+						"#eff1f5": "var(--catppuccin-mantle-light)"
 					}
 				},
-				dark: "dark-plus"
+				dark: {
+					...catppuccinMocha
+				}
 			},
 			transformers: [
 				copy({
