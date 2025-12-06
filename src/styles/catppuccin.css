@@ -1,0 +1,195 @@
+:root {
+    /* Latte */
+    --catppuccin-rosewater-light: #dc8a78;
+    --catppuccin-flamingo-light: #dd7878;
+    --catppuccin-pink-light: #ea76cb;
+    --catppuccin-mauve-light: #8839ef;
+    --catppuccin-red-light: #d20f39;
+    --catppuccin-maroon-light: #e64553;
+    --catppuccin-peach-light: #fe640b;
+    --catppuccin-yellow-light: #df8e1d;
+    --catppuccin-green-light: #40a02b;
+    --catppuccin-teal-light: #179299;
+    --catppuccin-sky-light: #04a5e5;
+    --catppuccin-sapphire-light: #209fb5;
+    --catppuccin-blue-light: #1e66f5;
+    --catppuccin-lavender-light: #7287fd;
+    --catppuccin-text-light: #4c4f69;
+    --catppuccin-subtext-1-light: #5c5f77;
+    --catppuccin-subtext-0-light: #6c6f85;
+    --catppuccin-overlay-2-light: #7c7f93;
+    --catppuccin-overlay-1-light: #8c8fa1;
+    --catppuccin-overlay-0-light: #9ca0b0;
+    --catppuccin-surface-2-light: #acb0be;
+    --catppuccin-surface-1-light: #bcc0cc;
+    --catppuccin-surface-0-light: #ccd0da;
+    --catppuccin-base-light: #eff1f5;
+    --catppuccin-mantle-light: #e6e9ef;
+    --catppuccin-crust-light: #dce0e8;
+
+    /* Mocha */
+    --catppuccin-rosewater-dark: #f5e0dc;
+    --catppuccin-flamingo-dark: #f2cdcd;
+    --catppuccin-pink-dark: #f5c2e7;
+    --catppuccin-mauve-dark: #cba6f7;
+    --catppuccin-red-dark: #f38ba8;
+    --catppuccin-maroon-dark: #eba0ac;
+    --catppuccin-peach-dark: #fab387;
+    --catppuccin-yellow-dark: #f9e2af;
+    --catppuccin-green-dark: #a6e3a1;
+    --catppuccin-teal-dark: #94e2d5;
+    --catppuccin-sky-dark: #89dceb;
+    --catppuccin-sapphire-dark: #74c7ec;
+    --catppuccin-blue-dark: #89b4fa;
+    --catppuccin-lavender-dark: #b4befe;
+    --catppuccin-text-dark: #cdd6f4;
+    --catppuccin-subtext-1-dark: #bac2de;
+    --catppuccin-subtext-0-dark: #a6adc8;
+    --catppuccin-overlay-2-dark: #9399b2;
+    --catppuccin-overlay-1-dark: #7f849c;
+    --catppuccin-overlay-0-dark: #6c7086;
+    --catppuccin-surface-2-dark: #585b70;
+    --catppuccin-surface-1-dark: #45475a;
+    --catppuccin-surface-0-dark: #313244;
+    --catppuccin-base-dark: #1e1e2e;
+    --catppuccin-mantle-dark: #181825;
+    --catppuccin-crust-dark: #11111b;
+}
+
+/* Dark theme colors */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Switch the tokens to reference the dark source values */
+        --catppuccin-rosewater: var(--catppuccin-rosewater-dark);
+        --catppuccin-flamingo: var(--catppuccin-flamingo-dark);
+        --catppuccin-pink: var(--catppuccin-pink-dark);
+        --catppuccin-mauve: var(--catppuccin-mauve-dark);
+        --catppuccin-red: var(--catppuccin-red-dark);
+        --catppuccin-maroon: var(--catppuccin-maroon-dark);
+        --catppuccin-peach: var(--catppuccin-peach-dark);
+        --catppuccin-yellow: var(--catppuccin-yellow-dark);
+        --catppuccin-green: var(--catppuccin-green-dark);
+        --catppuccin-teal: var(--catppuccin-teal-dark);
+        --catppuccin-sky: var(--catppuccin-sky-dark);
+        --catppuccin-sapphire: var(--catppuccin-sapphire-dark);
+        --catppuccin-blue: var(--catppuccin-blue-dark);
+        --catppuccin-lavender: var(--catppuccin-lavender-dark);
+        --catppuccin-text: var(--catppuccin-text-dark);
+        --catppuccin-subtext-1: var(--catppuccin-subtext-1-dark);
+        --catppuccin-subtext-0: var(--catppuccin-subtext-0-dark);
+        --catppuccin-overlay-2: var(--catppuccin-overlay-2-dark);
+        --catppuccin-overlay-1: var(--catppuccin-overlay-1-dark);
+        --catppuccin-overlay-0: var(--catppuccin-overlay-0-dark);
+        --catppuccin-surface-2: var(--catppuccin-surface-2-dark);
+        --catppuccin-surface-1: var(--catppuccin-surface-1-dark);
+        --catppuccin-surface-0: var(--catppuccin-surface-0-dark);
+        --catppuccin-base: var(--catppuccin-base-dark);
+        --catppuccin-mantle: var(--catppuccin-mantle-dark);
+        --catppuccin-crust: var(--catppuccin-crust-dark);
+    }
+}
+
+/* Language-specific fonts */
+:lang(zh-cn) {
+    --font-serif: "Noto Serif SC", serif;
+}
+
+:lang(ja) {
+    --font-serif: "Noto Serif JP", serif;
+}
+
+/* Manual theme overrides */
+[data-theme="light"] {
+    --catppuccin-rosewater: var(--catppuccin-rosewater-light);
+    --catppuccin-flamingo: var(--catppuccin-flamingo-light);
+    --catppuccin-pink: var(--catppuccin-pink-light);
+    --catppuccin-mauve: var(--catppuccin-mauve-light);
+    --catppuccin-red: var(--catppuccin-red-light);
+    --catppuccin-maroon: var(--catppuccin-maroon-light);
+    --catppuccin-peach: var(--catppuccin-peach-light);
+    --catppuccin-yellow: var(--catppuccin-yellow-light);
+    --catppuccin-green: var(--catppuccin-green-light);
+    --catppuccin-teal: var(--catppuccin-teal-light);
+    --catppuccin-sky: var(--catppuccin-sky-light);
+    --catppuccin-sapphire: var(--catppuccin-sapphire-light);
+    --catppuccin-blue: var(--catppuccin-blue-light);
+    --catppuccin-lavender: var(--catppuccin-lavender-light);
+    --catppuccin-text: var(--catppuccin-text-light);
+    --catppuccin-subtext-1: var(--catppuccin-subtext-1-light);
+    --catppuccin-subtext-0: var(--catppuccin-subtext-0-light);
+    --catppuccin-overlay-2: var(--catppuccin-overlay-2-light);
+    --catppuccin-overlay-1: var(--catppuccin-overlay-1-light);
+    --catppuccin-overlay-0: var(--catppuccin-overlay-0-light);
+    --catppuccin-surface-2: var(--catppuccin-surface-2-light);
+    --catppuccin-surface-1: var(--catppuccin-surface-1-light);
+    --catppuccin-surface-0: var(--catppuccin-surface-0-light);
+    --catppuccin-base: var(--catppuccin-base-light);
+    --catppuccin-mantle: var(--catppuccin-mantle-light);
+    --catppuccin-crust: var(--catppuccin-crust-light);
+}
+
+[data-theme="dark"] {
+    --catppuccin-rosewater: var(--catppuccin-rosewater-dark);
+    --catppuccin-flamingo: var(--catppuccin-flamingo-dark);
+    --catppuccin-pink: var(--catppuccin-pink-dark);
+    --catppuccin-mauve: var(--catppuccin-mauve-dark);
+    --catppuccin-red: var(--catppuccin-red-dark);
+    --catppuccin-maroon: var(--catppuccin-maroon-dark);
+    --catppuccin-peach: var(--catppuccin-peach-dark);
+    --catppuccin-yellow: var(--catppuccin-yellow-dark);
+    --catppuccin-green: var(--catppuccin-green-dark);
+    --catppuccin-teal: var(--catppuccin-teal-dark);
+    --catppuccin-sky: var(--catppuccin-sky-dark);
+    --catppuccin-sapphire: var(--catppuccin-sapphire-dark);
+    --catppuccin-blue: var(--catppuccin-blue-dark);
+    --catppuccin-lavender: var(--catppuccin-lavender-dark);
+    --catppuccin-text: var(--catppuccin-text-dark);
+    --catppuccin-subtext-1: var(--catppuccin-subtext-1-dark);
+    --catppuccin-subtext-0: var(--catppuccin-subtext-0-dark);
+    --catppuccin-overlay-2: var(--catppuccin-overlay-2-dark);
+    --catppuccin-overlay-1: var(--catppuccin-overlay-1-dark);
+    --catppuccin-overlay-0: var(--catppuccin-overlay-0-dark);
+    --catppuccin-surface-2: var(--catppuccin-surface-2-dark);
+    --catppuccin-surface-1: var(--catppuccin-surface-1-dark);
+    --catppuccin-surface-0: var(--catppuccin-surface-0-dark);
+    --catppuccin-base: var(--catppuccin-base-dark);
+    --catppuccin-mantle: var(--catppuccin-mantle-dark);
+    --catppuccin-crust: var(--catppuccin-crust-dark);
+}
+
+@import "tailwindcss";
+
+@plugin "@iconify/tailwind4" {
+    /* biome-ignore lint/correctness/noUnknownProperty: https://iconify.design/docs/usage/css/tailwind/tailwind4/#clean-selectors */
+    prefixes: lucide, simple-icons, fa6-brands;
+}
+
+@theme {
+    /* Colors - using CSS variables for theme switching */
+    --color-cat-rosewater: var(--catppuccin-rosewater);
+    --color-cat-flamingo: var(--catppuccin-flamingo);
+    --color-cat-pink: var(--catppuccin-pink);
+    --color-cat-mauve: var(--catppuccin-mauve);
+    --color-cat-red: var(--catppuccin-red);
+    --color-cat-maroon: var(--catppuccin-maroon);
+    --color-cat-peach: var(--catppuccin-peach);
+    --color-cat-yellow: var(--catppuccin-yellow);
+    --color-cat-green: var(--catppuccin-green);
+    --color-cat-teal: var(--catppuccin-teal);
+    --color-cat-sky: var(--catppuccin-sky);
+    --color-cat-sapphire: var(--catppuccin-sapphire);
+    --color-cat-blue: var(--catppuccin-blue);
+    --color-cat-lavender: var(--catppuccin-lavender);
+    --color-cat-text: var(--catppuccin-text);
+    --color-cat-subtext-1: var(--catppuccin-subtext-1);
+    --color-cat-subtext-0: var(--catppuccin-subtext-0);
+    --color-cat-overlay-2: var(--catppuccin-overlay-2);
+    --color-cat-overlay-1: var(--catppuccin-overlay-1);
+    --color-cat-overlay-0: var(--catppuccin-overlay-0);
+    --color-cat-surface-2: var(--catppuccin-surface-2);
+    --color-cat-surface-1: var(--catppuccin-surface-1);
+    --color-cat-surface-0: var(--catppuccin-surface-0);
+    --color-cat-base: var(--catppuccin-base);
+    --color-cat-mantle: var(--catppuccin-mantle);
+    --color-cat-crust: var(--catppuccin-crust);
+}

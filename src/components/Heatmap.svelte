@@ -47,7 +47,7 @@ jottings.forEach(jotting => {
 	{#each heatmap.reverse() as day}
 		{@const number = day.notes.length + day.jottings.length}
 		<figure class="relative group">
-			<i class="block w-2.5 h-2.5 bg-primary {number > 2 ? 'opacity-100' : number > 1 ? 'opacity-70' : number > 0 ? 'opacity-40' : 'opacity-10'}"></i>
+			<i class="block w-2.5 h-2.5 bg-cat-green {number > 2 ? 'opacity-100' : number > 1 ? 'opacity-70' : number > 0 ? 'opacity-40' : 'opacity-10'}"></i>
 
 			<div class="absolute start-0 bottom-full w-max -translate-x-1/2 rtl:translate-x-1/2 flex flex-col mb-1 rounded-sm px-2 py-2 text-xs text-background bg-primary pop">
 				<time class="font-bold">{Time.date.locale(day.date, locale)}</time>
