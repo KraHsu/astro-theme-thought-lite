@@ -2,7 +2,7 @@
 	"name": "astro-theme-thought-lite",
 	"type": "module",
 	"private": true,
-	"version": "0.30.6",
+	"version": "0.30.7",
 	"description": "A modern Astro theme focused on content creation",
 	"keywords": [
 		"astro",
@@ -108,7 +108,7 @@
 		"tsx": "^4.21.0"
 	},
 	"lint-staged": {
-		"*.{js,ts,json,jsonc,svelte,astro}": [
+		"*.{js,ts,json,jsonc,css,svelte,astro}": [
 			"biome check --write --no-errors-on-unmatched --files-ignore-unknown=true"
 		]
 	}
