@@ -4,8 +4,6 @@ timestamp: 2025-12-07 02:26:40+08:00
 tags: [技术日志, 折腾日常]
 description: 记录使用 Github Action 将我的博客部署半自动化的流程和经验
 ---
-> [!TIP]
-> 可选信息
 
 ## 背景
 
