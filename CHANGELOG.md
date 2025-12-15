@@ -1,5 +1,34 @@
 # Changelog
 
+## [0.30.11](https://github.com/tuyuritio/astro-theme-thought-lite/compare/v0.30.10...v0.30.11) (2025-12-15)
+
+
+### Bug Fixes
+
+* **feed:** use absolute path for stylesheet reference ([cccde9c](https://github.com/tuyuritio/astro-theme-thought-lite/commit/cccde9cdcd54745128588fb1c92097b181555e30))
+
+## [0.30.10](https://github.com/tuyuritio/astro-theme-thought-lite/compare/v0.30.9...v0.30.10) (2025-12-13)
+
+
+### Styles
+
+* add group name for utilities ([7b1d7b4](https://github.com/tuyuritio/astro-theme-thought-lite/commit/7b1d7b40fec3aeb7a2f07c4b596229a34fcafb25))
+* adjust border thickness ([94db398](https://github.com/tuyuritio/astro-theme-thought-lite/commit/94db398aa905e76876cc5906d4a880454c7898ee))
+
+## [0.30.9](https://github.com/tuyuritio/astro-theme-thought-lite/compare/v0.30.8...v0.30.9) (2025-12-10)
+
+
+### Styles
+
+* resolve layout issue with note list on mobile ([74ee8b0](https://github.com/tuyuritio/astro-theme-thought-lite/commit/74ee8b0fa472e5474df2e7ef5a9dddd27039ad86))
+
+## [0.30.8](https://github.com/tuyuritio/astro-theme-thought-lite/compare/v0.30.7...v0.30.8) (2025-12-10)
+
+
+### Styles
+
+* improve layout for long note title ([37d4eb4](https://github.com/tuyuritio/astro-theme-thought-lite/commit/37d4eb45f8bddd04985a55dc3a5a57f6c348e605))
+
 ## [0.30.7](https://github.com/tuyuritio/astro-theme-thought-lite/compare/v0.30.6...v0.30.7) (2025-12-07)
 
 
