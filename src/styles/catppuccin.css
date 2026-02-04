@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 :root {
 	/* Latte */
 	--catppuccin-rosewater-light: #dc8a78;
@@ -91,11 +93,11 @@
 
 /* Language-specific fonts */
 :lang(zh-cn) {
-	--font-serif: "Noto Serif SC", serif;
+	--font-serif: var(--font-noto-serif-sc);
 }
 
 :lang(ja) {
-	--font-serif: "Noto Serif JP", serif;
+	--font-serif: var(--font-noto-serif-jp);
 }
 
 /* Manual theme overrides */
@@ -156,8 +158,6 @@
 	--catppuccin-mantle: var(--catppuccin-mantle-dark);
 	--catppuccin-crust: var(--catppuccin-crust-dark);
 }
-
-@import "tailwindcss";
 
 @plugin "@iconify/tailwind4" {
 	/* biome-ignore lint/correctness/noUnknownProperty: https://iconify.design/docs/usage/css/tailwind/tailwind4/#clean-selectors */

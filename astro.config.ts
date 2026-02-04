@@ -132,7 +132,7 @@ export default defineConfig({
 			},
 			{
 				name: "Noto Serif SC",
-				provider: fontProviders.fontsource(),
+				provider: fontProviders.google(),
 				weights: [400, 700],
 				optimizedFallbacks: false,
 				fallbacks: ["Noto Serif SC", "Source Han Serif SC", "STSong", "Songti SC", "SimSun", "serif"],
@@ -140,7 +140,7 @@ export default defineConfig({
 			},
 			{
 				name: "Noto Serif JP",
-				provider: fontProviders.fontsource(),
+				provider: fontProviders.google(),
 				weights: [400, 700],
 				optimizedFallbacks: false,
 				fallbacks: ["Noto Serif JP", "Source Han Serif JP", "Hiragino Mincho ProN", "MS Mincho", "serif"],
@@ -148,11 +148,10 @@ export default defineConfig({
 			},
 			{
 				name: "Playwrite MX",
-				provider: fontProviders.fontsource(),
-				weights: ["100 400"],
-				styles: ["normal"],
+				provider: fontProviders.google(),
+				weights: [100],
 				display: "block",
-				subsets: ["latin"],
+				subsets: ["fallback"],
 				fallbacks: ["Apple Chancery", "Segoe Script", "cursive"],
 				cssVariable: "--font-playwrite-mx"
 			},

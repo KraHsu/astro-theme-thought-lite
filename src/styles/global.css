@@ -35,10 +35,6 @@
 	--shadow-color: var(--shadow-color-light);
 	--selection-color: var(--selection-color-light);
 
-	--font-serif: "Noto Serif", serif;
-	--font-monospace: "Maple Mono NF CN", monospace;
-	--font-cursive: "Playwrite MX", "The Peak Font Plus", serif;
-
 	--swup-fade-theme-duration: 0.15s;
 }
 
@@ -84,22 +80,12 @@
 [data-theme="dark"] .astro-code,
 [data-theme="dark"] .astro-code span {
 	color: var(--shiki-dark) !important;
-	background-color: var(--catppuccin-mantle-dark) !important;
+	background-color: var(--shiki-dark-bg) !important;
 }
 
 @layer base {
-	* {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-		font-family: inherit;
-		user-select: none;
-		-webkit-tap-highlight-color: transparent;
-	}
-
-	*::selection {
-		/* color: var(--catppuccin-crust); */
-		background-color: rgb(from var(--catppuccin-overlay-2) r g b / 0.3);
+	::selection {
+		background-color: var(--selection-color);
 	}
 
 	::-webkit-scrollbar {
