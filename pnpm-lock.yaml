@@ -20,6 +20,9 @@ importers:
       '@astrojs/svelte':
         specifier: ^7.2.5
         version: 7.2.5(@types/node@25.0.2)(astro@5.17.1(@types/node@25.0.2)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.30.2)(rollup@2.79.2)(terser@5.43.1)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.1))(jiti@2.6.1)(less@4.4.2)(lightningcss@1.30.2)(svelte@5.49.1)(terser@5.43.1)(tsx@4.21.0)(typescript@5.9.3)(yaml@2.8.1)
+      '@fontsource-variable/playwrite-mx':
+        specifier: ^5.2.7
+        version: 5.2.7
       '@hbsnow/rehype-sectionize':
         specifier: ^1.0.7
         version: 1.0.7
@@ -1257,6 +1260,9 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@fontsource-variable/playwrite-mx@5.2.7':
+    resolution: {integrity: sha512-X1zXdzz7z63kLuNVOvQ6fuJ/o4xXLGucfDpcQlRR6YZdwFEPDFacioa2C8D8i6NvEb3BMz1+cNECuHVOXEaQJg==}
 
   '@hbsnow/rehype-sectionize@1.0.7':
     resolution: {integrity: sha512-twbVxCFf4YwgTm6FIdGtHfJ14vvIHedk2fqZTpE3X6+vszEeZlMTy7tOyI9KaP/6S2DN2Jnk7zZGtZANTD+vEg==}
@@ -6711,6 +6717,8 @@ snapshots:
 
   '@esbuild/win32-x64@0.27.1':
     optional: true
+
+  '@fontsource-variable/playwrite-mx@5.2.7': {}
 
   '@hbsnow/rehype-sectionize@1.0.7':
     dependencies:

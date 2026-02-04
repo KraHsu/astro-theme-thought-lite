@@ -42,6 +42,7 @@
 		"@astrojs/mdx": "^4.3.13",
 		"@astrojs/sitemap": "^3.7.0",
 		"@astrojs/svelte": "^7.2.5",
+		"@fontsource-variable/playwrite-mx": "^5.2.7",
 		"@hbsnow/rehype-sectionize": "^1.0.7",
 		"@iconify-json/fa6-brands": "^1.2.6",
 		"@iconify-json/lucide": "^1.2.87",

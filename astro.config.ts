@@ -149,9 +149,10 @@ export default defineConfig({
 			{
 				name: "Playwrite MX",
 				provider: fontProviders.fontsource(),
-				weights: [100],
+				weights: ["100 400"],
+				styles: ["normal"],
 				display: "block",
-				subsets: ["fallback"],
+				subsets: ["latin"],
 				fallbacks: ["Apple Chancery", "Segoe Script", "cursive"],
 				cssVariable: "--font-playwrite-mx"
 			},
