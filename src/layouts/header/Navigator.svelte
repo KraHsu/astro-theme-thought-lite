@@ -9,16 +9,16 @@ import Menu from "./Menu.svelte";
 
 let { locale, route }: { locale: string; route: string } = $props();
 
-const t = i18nit(locale);
+let t = $derived(i18nit(locale));
 
 // Define home route and navigation routes configuration
-const homeRoute = getRelativeLocaleUrl(locale);
-const routes: { path: string; extra?: string[]; icon: `${string}--${string}`; label: string }[] = [
+let homeRoute = $derived(getRelativeLocaleUrl(locale));
+let routes: { path: string; extra?: string[]; icon: `${string}--${string}`; label: string }[] = $derived([
 	{ label: t("navigation.home"), path: homeRoute, extra: [getRelativeLocaleUrl(locale, "/preface")], icon: "lucide--tent" },
 	{ label: t("navigation.note"), path: getRelativeLocaleUrl(locale, "/note"), icon: "lucide--list" },
 	{ label: t("navigation.jotting"), path: getRelativeLocaleUrl(locale, "/jotting"), icon: "lucide--feather" },
 	{ label: t("navigation.about"), path: getRelativeLocaleUrl(locale, "/about"), icon: "lucide--at-sign" }
-];
+]);
 
 /**
  * Check if a route is currently active based on the current route path
