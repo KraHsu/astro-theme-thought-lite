@@ -9,6 +9,7 @@ import i18nit from "$i18n";
 
 let { locale, jottings, tags: tagList }: { locale: string; jottings: any[]; tags: string[] } = $props();
 
+// svelte-ignore state_referenced_locally
 const t = i18nit(locale);
 
 /** Track initial load to parse URL parameters */

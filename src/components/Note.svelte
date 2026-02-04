@@ -10,6 +10,7 @@ import i18nit from "$i18n";
 
 let { locale, notes, series: seriesList, tags: tagList }: { locale: string; notes: any[]; series: string[]; tags: string[] } = $props();
 
+// svelte-ignore state_referenced_locally
 const t = i18nit(locale);
 
 /** Track initial load to parse URL parameters */

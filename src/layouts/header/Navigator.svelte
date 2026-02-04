@@ -9,16 +9,22 @@ import Menu from "./Menu.svelte";
 
 let { locale, route }: { locale: string; route: string } = $props();
 
-let t = $derived(i18nit(locale));
+// svelte-ignore state_referenced_locally
+const t = i18nit(locale);
 
 // Define home route and navigation routes configuration
-let homeRoute = $derived(getRelativeLocaleUrl(locale));
-let routes: { path: string; extra?: string[]; icon: `${string}--${string}`; label: string }[] = $derived([
+// svelte-ignore state_referenced_locally
+const homeRoute = getRelativeLocaleUrl(locale);
+const routes: { path: string; extra?: string[]; icon: `${string}--${string}`; label: string }[] = [
+	// svelte-ignore state_referenced_locally
 	{ label: t("navigation.home"), path: homeRoute, extra: [getRelativeLocaleUrl(locale, "/preface")], icon: "lucide--tent" },
+	// svelte-ignore state_referenced_locally
 	{ label: t("navigation.note"), path: getRelativeLocaleUrl(locale, "/note"), icon: "lucide--list" },
+	// svelte-ignore state_referenced_locally
 	{ label: t("navigation.jotting"), path: getRelativeLocaleUrl(locale, "/jotting"), icon: "lucide--feather" },
+	// svelte-ignore state_referenced_locally
 	{ label: t("navigation.about"), path: getRelativeLocaleUrl(locale, "/about"), icon: "lucide--at-sign" }
-]);
+];
 
 /**
  * Check if a route is currently active based on the current route path

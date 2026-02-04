@@ -6,8 +6,10 @@ import i18nit from "$i18n";
 
 let { locale, sensitive = false, back, children }: { locale: string; sensitive: boolean; back: string; children: Snippet } = $props();
 
+// svelte-ignore state_referenced_locally
 const t = i18nit(locale);
 
+// svelte-ignore state_referenced_locally
 if (sensitive) {
 	$effect(() => {
 		if (!sensitive) window.zoom();

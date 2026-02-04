@@ -15,8 +15,9 @@ interface Props {
 
 let { name, size, title, class: className }: Props = $props();
 
-let value = $derived(size !== undefined ? (typeof size === "number" ? `${size}px` : size) : undefined);
-let dimensions = $derived(value ? `width: ${value}; height: ${value}` : "");
+// svelte-ignore state_referenced_locally
+let value = size !== undefined ? (typeof size === "number" ? `${size}px` : size) : undefined;
+let dimensions = value ? `width: ${value}; height: ${value}` : "";
 </script>
 
 <figure aria-label={title} class="relative inline-flex items-center leading-none group/icon">
