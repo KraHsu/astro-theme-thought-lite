@@ -4,51 +4,28 @@
 	prefixes: lucide, simple-icons, fa6-brands;
 }
 
-:root {
-	/* Light theme colors */
-	--primary-color-light: #2a2a28;
-	--secondary-color-light: #50504d;
-	--remark-color-light: #757575;
-	--weak-color-light: #9f9f9c;
-	--background-color-light: var(--catppuccin-base-light);
-	--block-color-light: #eeeeee;
-	--shadow-color-light: #cdcdcc;
-	--selection-color-light: #adadacc3;
+/*
+  Z-index scale:
+  < 0: Below
+  0-9: Base
+  10-99: Elevated
+  100-999: Component
+  1000-9999: Overlay
+  10000-99999: Frame
+*/
 
-	/* Dark theme colors */
-	--primary-color-dark: #dddddb;
-	--secondary-color-dark: #aaaaa8;
-	--remark-color-dark: #a5a5a5;
-	--weak-color-dark: #5d5d5a;
-	--background-color-dark: var(--catppuccin-base-dark);
-	--block-color-dark: #1e1e1e;
-	--shadow-color-dark: #323231;
-	--selection-color-dark: #adadacc3;
-
-	/* Default to light values */
-	--primary-color: var(--primary-color-light);
-	--secondary-color: var(--secondary-color-light);
-	--remark-color: var(--remark-color-light);
-	--weak-color: var(--weak-color-light);
-	--background-color: var(--background-color-light);
-	--block-color: var(--block-color-light);
-	--shadow-color: var(--shadow-color-light);
-	--selection-color: var(--selection-color-light);
+:root,
+[data-theme="light"] {
+	--primary-color: #2a2a28;
+	--secondary-color: #50504d;
+	--remark-color: #757575;
+	--weak-color: #9f9f9c;
+	--background-color: #fffffd;
+	--block-color: #eeeeee;
+	--shadow-color: #cdcdcc;
+	--selection-color: #adadacc3;
 
 	--swup-fade-theme-duration: 0.15s;
-}
-
-@media (prefers-color-scheme: dark) {
-	:root {
-		--primary-color: #dddddb;
-		--secondary-color: #aaaaa8;
-		--remark-color: #a5a5a5;
-		--weak-color: #5d5d5a;
-		--background-color: #0e0e0c;
-		--block-color: #1e1e1e;
-		--shadow-color: #323231;
-		--selection-color: #adadacc3;
-	}
 
 	.astro-code,
 	.astro-code span {
@@ -66,6 +43,12 @@
 	--block-color: #1e1e1e;
 	--shadow-color: #323231;
 	--selection-color: #adadacc3;
+
+	.astro-code,
+	.astro-code span {
+		color: var(--shiki-dark) !important;
+		background-color: var(--shiki-dark-bg) !important;
+	}
 }
 
 /* Language-specific fonts */
@@ -75,12 +58,6 @@
 
 :lang(ja) {
 	--font-serif: var(--font-noto-serif-jp);
-}
-
-[data-theme="dark"] .astro-code,
-[data-theme="dark"] .astro-code span {
-	color: var(--shiki-dark) !important;
-	background-color: var(--shiki-dark-bg) !important;
 }
 
 @layer base {
@@ -100,7 +77,7 @@
 	}
 
 	*:focus-visible {
-		outline: 0.125rem solid var(--weak-color);
+		outline: 0.125rem solid var(--shadow-color);
 		outline-offset: 0.25rem;
 	}
 
@@ -213,11 +190,11 @@
 }
 
 .medium-zoom-overlay {
-	z-index: 5;
+	z-index: 1000;
 }
 
 .medium-zoom-image--opened {
-	z-index: 5;
+	z-index: 1000;
 }
 
 ::view-transition-old(root),
@@ -227,19 +204,19 @@
 }
 
 ::view-transition-old(root) {
-	z-index: 1;
+	z-index: 10000;
 }
 
 ::view-transition-new(root) {
-	z-index: 10;
+	z-index: 10001;
 }
 
 [data-theme="dark"]::view-transition-old(root) {
-	z-index: 10;
+	z-index: 10001;
 }
 
 [data-theme="dark"]::view-transition-new(root) {
-	z-index: 1;
+	z-index: 10000;
 }
 
 @theme {
@@ -307,7 +284,7 @@
 	}
 
 	.pop {
-		@apply opacity-0 invisible z-1 transition-[opacity,visibility] group-hover/pop:opacity-100 group-hover/pop:visible;
+		@apply opacity-0 invisible z-2000 transition-[opacity,visibility] group-hover/pop:opacity-100 group-hover/pop:visible;
 	}
 }
 

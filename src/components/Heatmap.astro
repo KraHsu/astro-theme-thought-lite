@@ -176,7 +176,7 @@ if (frequency === "month") {
 				<figure class="relative group/pop">
 					<i class:list={["block bg-cat-green/10", { "w-2.5 h-2.5": frequency === "day", "w-4 h-4": frequency === "week", "w-4.5 h-4.5": frequency === "month" }, { "bg-cat-green/40": count > 0, "bg-cat-green/70": count > 1, "bg-cat-green": count > 2 }]} />
 
-					<div class="absolute start-0 bottom-full w-max -translate-x-1/2 rtl:translate-x-1/2 flex flex-col mb-1 rounded-sm px-2 py-2 text-xs text-background bg-primary pop">
+					<div class="w-max flex flex-col mb-1 rounded-sm px-2 py-2 text-xs text-background bg-primary pop">
 						<time class="font-bold">{cell.target}</time>
 						{details}
 					</div>
@@ -185,3 +185,40 @@ if (frequency === "month") {
 		})
 	}
 </section>
+
+<style>
+	@supports (anchor-name: --anchor-heatmap) {
+		figure {
+			anchor-scope: --anchor-heatmap;
+
+			i {
+				anchor-name: --anchor-heatmap;
+			}
+
+			.pop {
+				position: fixed;
+				position-anchor: --anchor-heatmap;
+				position-area: top;
+				justify-self: anchor-center;
+				z-index: 10;
+			}
+		}
+	}
+
+	@supports not (anchor-name: --anchor-heatmap) {
+		figure {
+			position: relative;
+
+			.pop {
+				position: absolute;
+				bottom: 100%;
+				inset-inline-start: 0;
+				transform: translateX(-50%);
+			}
+		}
+
+		figure .pop:dir(rtl) {
+			transform: translateX(50%);
+		}
+	}
+</style>

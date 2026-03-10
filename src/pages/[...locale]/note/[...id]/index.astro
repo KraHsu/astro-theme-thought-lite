@@ -1,5 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
+import { getRelativeLocaleUrl } from "astro:i18n";
 import config, { monolocale } from "$config";
 import Time from "$utils/time";
 import Base from "$layouts/Base.astro";
@@ -39,6 +40,21 @@ const { note } = Astro.props;
 // Render markdown content and extract headings for TOC
 const { Content, headings, remarkPluginFrontmatter: frontmatter } = await render(note);
 
+const series = note.data.series
+	? (
+			await getCollection(
+				"note",
+				item => !item.data.draft && item.data.series === note.data.series && (monolocale || item.id.startsWith(`${locale}/`))
+			)
+		)
+			.sort((a, b) => a.data.timestamp.getTime() - b.data.timestamp.getTime())
+			.map(item => ({
+				title: item.data.title,
+				url: getRelativeLocaleUrl(locale, `/note/${monolocale ? item.id : item.id.split("/").slice(1).join("/")}`),
+				current: item.id === note.id
+			}))
+	: undefined;
+
 const t = i18nit(locale);
 ---
 
@@ -69,24 +85,15 @@ const t = i18nit(locale);
 			<hr class="border-b border-weak" />
 		</header>
 
-		<Sensitive {locale} back="/note" sensitive={note.data.sensitive} client:load>
-			<div class="flex gap-5">
-				<section id="markdown-content" class="markdown"><Content /></section>
-				{
-					note.data.toc && (
-						<aside class="hidden sm:block sm:shrink-0 sm:w-50">
-							<div class="sticky top-3 flex flex-col gap-1">
-								<h4>{t("note.contents")}</h4>
-								<nav class="overflow-y-auto">
-									<TOC {headings} />
-								</nav>
-							</div>
-						</aside>
-					)
-				}
+		<Sensitive {locale} back={getRelativeLocaleUrl(locale, "/note")} sensitive={note.data.sensitive} client:load>
+			<div class="contents">
+				<div class="flex gap-5">
+					<section id="markdown-content" class="markdown"><Content /></section>
+					{(note.data.toc || !!note.data.series) && <TOC headings={note.data.toc ? headings : undefined} {locale} {series} />}
+				</div>
 			</div>
 		</Sensitive>
 
-		<Position {locale} />
+		<Position {locale} toc={note.data.toc} series={!!note.data.series} />
 	</main>
 </Base>
