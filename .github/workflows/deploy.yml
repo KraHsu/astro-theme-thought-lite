@@ -23,8 +23,7 @@ jobs:
             - name: Install pnpm
               uses: pnpm/action-setup@v4
               with:
-                  version: 9
-                  run_install: false # 不自动安装依赖
+                  run_install: false
 
             - name: Remove pnpm-workspace.yaml (if exists)
               run: |
