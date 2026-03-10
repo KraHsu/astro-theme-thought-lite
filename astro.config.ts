@@ -33,6 +33,7 @@ import sectionize from "@hbsnow/rehype-sectionize";
 import copy from "@tuyuritio/shiki-code-copy";
 
 import reading from "./src/utils/reading";
+import inlineDisplayMath from "./src/utils/inline-display-math";
 
 import siteConfig from "./site.config";
 import ZeoSevenFonts from "./src/fonts/zeo-seven-fonts";
@@ -58,6 +59,7 @@ export default defineConfig({
 			[CJKStrikethrough, { singleTilde: false }],
 			ruby,
 			attr,
+			[inlineDisplayMath, { enabled: false }],
 			math,
 			gemoji,
 			footnote,
