@@ -10,7 +10,9 @@ description: 在Windows下安装IsaacSim和IsaacLab时遇到了“缺少hdf5.dll
 核心报错信息：
 
 ```bash
-"<path_to_py>/hdf5_dataset_file_handler.py", line 15, in <module> import h5py File "<site-packages>\h5py\__init__.py", line 25, in <module> from . import _errors ImportError: DLL load failed while importing _errors: 找不到指定的程序。
+"<path_to_py>/hdf5_dataset_file_handler.py", line 15, in <module> import h5py
+File "<site-packages>\h5py\__init__.py", line 25, in <module> from . import _errors
+ImportError: DLL load failed while importing _errors: The specified module could not be found.
 ```
 
 ## 原因分析

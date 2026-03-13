@@ -31,5 +31,3 @@ Download the corresponding `.whl` file for your platform directly from `PyPI` (i
 
 Note that you should uninstall any previously installed version of `h5py` first.
 
-```
-
