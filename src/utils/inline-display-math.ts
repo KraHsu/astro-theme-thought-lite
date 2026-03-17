@@ -1,10 +1,29 @@
-import { visit, SKIP } from "unist-util-visit";
-import type { Root, RootContent, Paragraph, PhrasingContent, Parent } from "mdast";
-import type { InlineMath, Math as ASTMath } from "mdast-util-math";
+import type { Paragraph, Parent, PhrasingContent, Root, RootContent } from "mdast";
+import type { Math as ASTMath, InlineMath } from "mdast-util-math";
+import type { Plugin, Transformer } from "unified";
+import { SKIP, visit } from "unist-util-visit";
 
 interface Options {
-	enabled?: boolean;
+	/**
+	 * layout:
+	 * - "block": convert inline $$...$$ into block math (break paragraph structure)
+	 * - "display": keep structure, but render with display layout (centers math on its own line)
+	 * - "displaystyle": keep structure and inline layout, only apply \displaystyle
+	 * - "inline": do nothing
+	 */
+	layout?: "block" | "display" | "displaystyle" | "inline";
 }
+
+type KatexDisplayWarpper = {
+	type: "span";
+	children: [InlineMath];
+	data: {
+		hName: "span";
+		hProperties: {
+			className: ["katex-display"];
+		};
+	};
+};
 
 function normalizeClass(v: unknown): string[] {
 	if (Array.isArray(v)) return v.map(String);
@@ -27,7 +46,7 @@ function isInlineDisplayMath(node: InlineMath): boolean {
 	return srcLen - valLen > 2;
 }
 
-function toDisplayMath(node: InlineMath): ASTMath {
+function toBlockMath(node: InlineMath): ASTMath {
 	return {
 		type: "math",
 		value: node.value,
@@ -38,6 +57,33 @@ function toDisplayMath(node: InlineMath): ASTMath {
 			hProperties: {
 				...node.data?.hProperties,
 				className: normalizeClass(node.data?.hProperties?.className).map(c => (c === "math-inline" ? "math-display" : c))
+			}
+		}
+	};
+}
+
+function applyDisplayStyle(node: InlineMath): void {
+	const child = node.data?.hChildren?.[0];
+
+	if (node.data?.hChildren?.length !== 1 || child?.type !== "text") {
+		return;
+	}
+
+	if (!child.value.startsWith("\\displaystyle ")) {
+		child.value = `\\displaystyle ${child.value}`;
+	}
+}
+
+function wrapDisplayLayout(node: InlineMath): KatexDisplayWarpper {
+	applyDisplayStyle(node);
+
+	return {
+		type: "span",
+		children: [node],
+		data: {
+			hName: "span",
+			hProperties: {
+				className: ["katex-display"]
 			}
 		}
 	};
@@ -59,11 +105,44 @@ function canReplaceParagraphWithBlocks(parent: Parent | undefined): parent is Pa
 	return true;
 }
 
-function remarkInlineDisplayMath(options: Options = {}) {
-	const { enabled = true } = options;
+const plugin: Plugin<[Options?], Root> = (options = {}) => {
+	const { layout = "inline" } = options;
+	const transformer: Transformer<Root> = tree => {
+		if (layout === "inline") {
+			return;
+		}
 
-	return (tree: Root) => {
-		if (!enabled) return;
+		if (layout === "displaystyle") {
+			visit(tree, "inlineMath", (node: InlineMath) => {
+				if (!isInlineDisplayMath(node)) return;
+
+				applyDisplayStyle(node);
+			});
+
+			return;
+		}
+
+		if (layout === "display") {
+			visit(tree, "paragraph", (paragraph: Paragraph) => {
+				const children: PhrasingContent[] = [];
+				let changed = false;
+
+				for (const child of paragraph.children) {
+					if (child.type === "inlineMath" && isInlineDisplayMath(child)) {
+						changed = true;
+						children.push(wrapDisplayLayout(child) as unknown as PhrasingContent);
+					} else {
+						children.push(child);
+					}
+				}
+
+				if (!changed) return;
+
+				paragraph.children = children;
+			});
+
+			return;
+		}
 
 		visit(tree, "paragraph", (paragraph: Paragraph, index, parent) => {
 			if (typeof index !== "number") return;
@@ -82,7 +161,7 @@ function remarkInlineDisplayMath(options: Options = {}) {
 						buffer = [];
 					}
 
-					blocks.push(toDisplayMath(child as InlineMath));
+					blocks.push(toBlockMath(child as InlineMath));
 				} else {
 					buffer.push(child);
 				}
@@ -102,6 +181,8 @@ function remarkInlineDisplayMath(options: Options = {}) {
 			return [SKIP, index + blocks.length];
 		});
 	};
-}
 
-export default remarkInlineDisplayMath;
+	return transformer;
+};
+
+export default plugin;
