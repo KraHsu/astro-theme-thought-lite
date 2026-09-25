@@ -74,6 +74,29 @@ theme: {
 
 `thought-lite` retains the original monochrome palette. `catppuccin` uses Latte / Mocha for pages, the heatmap, Markdown links and alerts, and syntax highlighting. Overrides merge by field; light and dark palettes merge independently.
 
+All four [official Catppuccin flavors](https://github.com/catppuccin/palette) are provided separately, preserving their official color values:
+
+| Preset name | Flavor | Scheme |
+| --- | --- | --- |
+| `catppuccin-latte` | Latte | Light |
+| `catppuccin-frappe` | Frappé | Dark |
+| `catppuccin-macchiato` | Macchiato | Dark |
+| `catppuccin-mocha` | Mocha | Dark |
+
+Select a light/dark preset pair to keep page colors and syntax highlighting in sync:
+
+```ts
+theme: {
+  preset: {
+    light: "catppuccin-latte",
+    dark: "catppuccin-frappe" // or catppuccin-macchiato / catppuccin-mocha
+  },
+  mode: "system"
+}
+```
+
+`preset: "catppuccin"` is shorthand for Latte / Mocha. Preset pairs also work with `defineTheme()` through `extends`. `mode` still controls the initial scheme preference, and the visitor button switches between the selected light and dark flavors.
+
 | Option | Purpose |
 | --- | --- |
 | `colors.light` / `colors.dark` | `primary`, `secondary`, `weak`: text levels; `background`, `block`, `shadow`, `selection`: page, blocks, borders/outlines, and selection. |

@@ -4,7 +4,7 @@ import { test } from "node:test";
 import vm from "node:vm";
 import { createMarkdownProcessor } from "@astrojs/markdown-remark";
 import { parse } from "css-tree";
-import { defineTheme, resolveTheme, themeCSS, type ThemePreset } from "../src/lib/theme";
+import { defineTheme, resolveTheme, themeCSS, type ThemePreset, type ThemePresetPair } from "../src/lib/theme";
 
 test("omitting theme config preserves original palette, layout and highlighting", () => {
 	const theme = resolveTheme();
@@ -75,6 +75,50 @@ test("the selected preset reaches Astro's real Markdown/Shiki pipeline", async (
 	assert.match(result.code, /catppuccin-latte/);
 	assert.match(result.code, /catppuccin-mocha/);
 	assert.match(result.code, /--shiki-dark/);
+});
+
+test("all four Catppuccin variants retain official colors and matching Shiki themes", async () => {
+	const variants = [
+		{ dark: "catppuccin-frappe", background: "#303446", primary: "#c6d0f5", block: "#292c3c" },
+		{ dark: "catppuccin-macchiato", background: "#24273a", primary: "#cad3f5", block: "#1e2030" },
+		{ dark: "catppuccin-mocha", background: "#1e1e2e", primary: "#cdd6f4", block: "#181825" }
+	] as const;
+	for (const variant of variants) {
+		const theme = resolveTheme({ preset: { light: "catppuccin-latte", dark: variant.dark } });
+		assert.equal(theme.colors.light.background, "#eff1f5");
+		assert.equal(theme.colors.light.primary, "#4c4f69");
+		assert.equal(theme.colors.dark.background, variant.background);
+		assert.equal(theme.colors.dark.primary, variant.primary);
+		assert.equal(theme.colors.dark.codeBackground, variant.block);
+		assert.deepEqual(theme.code, { light: "catppuccin-latte", dark: variant.dark });
+		const processor = await createMarkdownProcessor({ shikiConfig: { themes: theme.code } });
+		const result = await processor.render("```ts\nconst answer: number = 42;\n```");
+		assert.ok(result.code.includes(`catppuccin-latte ${variant.dark}`));
+		assert.doesNotThrow(() => parse(themeCSS(theme)));
+	}
+	const explicit = resolveTheme({ preset: { light: "catppuccin-latte", dark: "catppuccin-mocha" } });
+	assert.equal(themeCSS(explicit), themeCSS(resolveTheme({ preset: "catppuccin" })));
+});
+
+test("variant pairs support portable themes and reject light/dark mismatches", () => {
+	const custom = defineTheme({
+		name: "frappe-notebook",
+		extends: { light: "catppuccin-latte", dark: "catppuccin-frappe" },
+		layout: { contentWidth: "960px" }
+	});
+	const theme = resolveTheme({ preset: custom, colors: { dark: { accent: "#123456" } } });
+	assert.equal(theme.colors.dark.background, "#303446");
+	assert.equal(theme.colors.dark.accent, "#123456");
+	assert.equal(theme.layout.contentWidth, "960px");
+	assert.equal(theme.code.dark, "catppuccin-frappe");
+	assert.throws(
+		() => resolveTheme({ preset: { light: "catppuccin-mocha", dark: "catppuccin-frappe" } as unknown as ThemePresetPair }),
+		/Invalid light theme preset/
+	);
+	assert.throws(
+		() => resolveTheme({ preset: { light: "catppuccin-latte", dark: "catppuccin-latte" } as unknown as ThemePresetPair }),
+		/Invalid dark theme preset/
+	);
 });
 
 const initScript = readFileSync(new URL("../src/scripts/theme-init.js", import.meta.url), "utf8");

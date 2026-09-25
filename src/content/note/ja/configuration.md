@@ -74,6 +74,29 @@ theme: {
 
 `thought-lite` は従来のモノクロ配色、`catppuccin` は Latte / Mocha を使用します。ページ、ヒートマップ、Markdown リンク、アラート、コードハイライトに適用されます。指定した項目だけを上書きし、ライト・ダークの設定は個別にマージします。
 
+[Catppuccin 公式](https://github.com/catppuccin/palette) の4つのフレーバーを個別に用意し、公式の色値を維持しています。
+
+| プリセット名 | フレーバー | 明暗 |
+| --- | --- | --- |
+| `catppuccin-latte` | Latte | ライト |
+| `catppuccin-frappe` | Frappé | ダーク |
+| `catppuccin-macchiato` | Macchiato | ダーク |
+| `catppuccin-mocha` | Mocha | ダーク |
+
+ライト・ダークの組み合わせを選択すると、ページとコードハイライトに同じフレーバーが適用されます。
+
+```ts
+theme: {
+  preset: {
+    light: "catppuccin-latte",
+    dark: "catppuccin-frappe" // または catppuccin-macchiato / catppuccin-mocha
+  },
+  mode: "system"
+}
+```
+
+`preset: "catppuccin"` は Latte / Mocha の省略形です。組み合わせは `defineTheme()` の `extends` にも指定できます。`mode` は初期の明暗設定を制御し、訪問者のボタンは選択したライト・ダーク間を切り替えます。
+
 | 設定 | 用途 |
 | --- | --- |
 | `colors.light` / `colors.dark` | `primary` / `secondary` / `weak`：文字色、`background`：背景、`block`：ブロック、`shadow`：境界線、`selection`：選択範囲。 |

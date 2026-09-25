@@ -1,14 +1,24 @@
 import thoughtLite from "../themes/thought-lite";
-import catppuccin from "../themes/catppuccin";
-import type { ColorMode, ThemeColors, ThemeDefinition, ThemeOverrides } from "../themes/types";
+import catppuccin, { catppuccinVariants } from "../themes/catppuccin";
+import type { ColorMode, ColorScheme, ThemeColors, ThemeDefinition, ThemeOverrides } from "../themes/types";
 
 export type { ColorMode, ColorScheme, ThemeColors, ThemeDefinition, ThemeOverrides } from "../themes/types";
 
 const presets = { "thought-lite": thoughtLite, catppuccin };
 export type ThemePreset = keyof typeof presets;
 
+type VariantPreset<Scheme extends ColorScheme> = {
+	[Name in keyof typeof catppuccinVariants]: (typeof catppuccinVariants)[Name]["scheme"] extends Scheme ? Name : never;
+}[keyof typeof catppuccinVariants];
+
+/** Choose a palette for each color scheme; light/dark mismatches are rejected. */
+export interface ThemePresetPair {
+	light: VariantPreset<"light">;
+	dark: VariantPreset<"dark">;
+}
+
 export interface ThemeOptions extends ThemeOverrides {
-	preset?: ThemePreset | ThemeDefinition;
+	preset?: ThemePreset | ThemePresetPair | ThemeDefinition;
 	/** Initial preference; a visitor's saved light/dark choice takes priority. */
 	mode?: ColorMode;
 	/** Hide the visitor's light/dark switch without changing the mode. */
@@ -35,7 +45,19 @@ function mergeTheme(base: ThemeDefinition, overrides: ThemeOverrides): ThemeDefi
 }
 
 function getPreset(preset: ThemeOptions["preset"] = "thought-lite"): ThemeDefinition {
-	if (typeof preset !== "string") return preset;
+	if (typeof preset !== "string") {
+		if ("name" in preset) return preset;
+		const light = catppuccinVariants[preset.light];
+		const dark = catppuccinVariants[preset.dark];
+		if (!light || light.scheme !== "light") throw new Error(`Invalid light theme preset: ${preset.light}`);
+		if (!dark || dark.scheme !== "dark") throw new Error(`Invalid dark theme preset: ${preset.dark}`);
+		return {
+			...thoughtLite,
+			name: `${preset.light}/${preset.dark}`,
+			colors: { light: light.colors, dark: dark.colors },
+			code: { light: light.code, dark: dark.code }
+		};
+	}
 	if (!Object.hasOwn(presets, preset)) throw new Error(`Unknown theme preset: ${preset}`);
 	return presets[preset];
 }

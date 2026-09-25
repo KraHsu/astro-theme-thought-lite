@@ -74,6 +74,29 @@ theme: {
 
 `thought-lite` 保留原版黑白配色；`catppuccin` 使用 Latte / Mocha，包含页面配色、绿色热力图、Markdown 链接和提示框，以及对应的代码高亮。只覆盖需要修改的字段，其余继承预设，浅色与深色配置分别合并。
 
+四个 [Catppuccin 官方变体](https://github.com/catppuccin/palette) 分别提供，色值保持官方标准：
+
+| 预设名称 | 变体 | 用途 |
+| --- | --- | --- |
+| `catppuccin-latte` | Latte | 浅色 |
+| `catppuccin-frappe` | Frappé | 深色 |
+| `catppuccin-macchiato` | Macchiato | 深色 |
+| `catppuccin-mocha` | Mocha | 深色 |
+
+通过明暗预设对选择变体，页面和代码高亮会同步使用对应色板：
+
+```ts
+theme: {
+  preset: {
+    light: "catppuccin-latte",
+    dark: "catppuccin-frappe" // 或 catppuccin-macchiato / catppuccin-mocha
+  },
+  mode: "system"
+}
+```
+
+`preset: "catppuccin"` 是 Latte / Mocha 组合的简写。预设对也可以传给 `defineTheme()` 的 `extends`。`mode` 仍控制初始明暗偏好，访客按钮在选定的浅色、深色变体之间切换。
+
 | 配置 | 作用 |
 | --- | --- |
 | `colors.light` / `colors.dark` | `primary` 正文、`secondary` 次要文字、`weak` 弱化文字、`background` 页面背景、`block` 内容块、`shadow` 边框与轮廓、`selection` 选区。 |
