@@ -49,8 +49,8 @@ function getPreset(preset: ThemeOptions["preset"] = "thought-lite"): ThemeDefini
 		if ("name" in preset) return preset;
 		const light = catppuccinVariants[preset.light];
 		const dark = catppuccinVariants[preset.dark];
-		if (!light || light.scheme !== "light") throw new Error(`Invalid light theme preset: ${preset.light}`);
-		if (!dark || dark.scheme !== "dark") throw new Error(`Invalid dark theme preset: ${preset.dark}`);
+		if (light?.scheme !== "light") throw new Error(`Invalid light theme preset: ${preset.light}`);
+		if (dark?.scheme !== "dark") throw new Error(`Invalid dark theme preset: ${preset.dark}`);
 		return {
 			...thoughtLite,
 			name: `${preset.light}/${preset.dark}`,
