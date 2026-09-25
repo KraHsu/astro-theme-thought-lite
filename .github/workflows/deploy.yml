@@ -37,8 +37,15 @@ jobs:
               run: pnpm install --frozen-lockfile
 
             # 构建
+            # 字体 CDN（尤其 zeoseven）偶尔超时；已下载的字体缓存在 node_modules/.astro，重试只补缺的
             - name: Build project
-              run: pnpm build
+              run: |
+                  for i in 1 2 3; do
+                    pnpm build && exit 0
+                    echo "::warning::build attempt $i failed, retrying"
+                    sleep 5
+                  done
+                  exit 1
 
             # SSH 准备
             - name: Setup SSH
@@ -46,15 +53,25 @@ jobs:
               with:
                   ssh-private-key: ${{ secrets.DEPLOY_KEY }}
 
+            # SSH 在 22222 端口；国际线路偶尔丢连接，所以带重试
             - name: Add known hosts
               run: |
                   mkdir -p ~/.ssh
-                  ssh-keyscan -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts
+                  for i in 1 2 3 4 5; do
+                    ssh-keyscan -p 22222 -H ${{ secrets.DEPLOY_HOST }} >> ~/.ssh/known_hosts && [ -s ~/.ssh/known_hosts ] && break
+                    sleep 5
+                  done
+                  [ -s ~/.ssh/known_hosts ]
 
             # 通过 rsync 部署
             - name: Deploy via rsync
               run: |
-                  rsync -avz --delete \
-                    --exclude='**/.user.ini' \
-                    ./dist/ \
-                    ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/
+                  for i in 1 2 3; do
+                    rsync -avz --delete \
+                      -e "ssh -p 22222 -o ConnectTimeout=20" \
+                      --exclude='**/.user.ini' \
+                      ./dist/ \
+                      ${{ secrets.DEPLOY_USER }}@${{ secrets.DEPLOY_HOST }}:${{ secrets.DEPLOY_PATH }}/ && exit 0
+                    sleep 10
+                  done
+                  exit 1

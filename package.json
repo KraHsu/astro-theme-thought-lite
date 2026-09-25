@@ -58,6 +58,7 @@
 		"@tuyuritio/remark-ruby": "^1.0.2",
 		"@tuyuritio/remark-spoiler": "^0.0.2",
 		"@tuyuritio/shiki-code-copy": "^1.0.0",
+		"@types/unist": "^3.0.3",
 		"astro": "^5.18.0",
 		"feed": "^5.2.0",
 		"katex": "^0.16.28",
