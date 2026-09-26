@@ -2,8 +2,8 @@
 import { getRelativeLocaleUrl } from "astro:i18n";
 import { Temporal } from "temporal-polyfill";
 import config, { monolocale } from "$config";
-import type { Section } from "$utils/config";
-import Time from "$utils/time";
+import type { Section } from "$lib/config";
+import Time from "$lib/time";
 import i18nit from "$i18n";
 
 /**
@@ -173,8 +173,8 @@ if (frequency === "month") {
 			}
 
 			return (
-				<figure class="relative group/pop">
-					<i class:list={["block bg-cat-green/10", { "w-2.5 h-2.5": frequency === "day", "w-4 h-4": frequency === "week", "w-4.5 h-4.5": frequency === "month" }, { "bg-cat-green/40": count > 0, "bg-cat-green/70": count > 1, "bg-cat-green": count > 2 }]} />
+				<figure class="group/pop">
+					<i class:list={["block bg-heatmap/10", { "w-2.5 h-2.5": frequency === "day", "w-4 h-4": frequency === "week", "w-4.5 h-4.5": frequency === "month" }, { "bg-heatmap/40": count > 0, "bg-heatmap/70": count > 1, "bg-heatmap": count > 2 }]} />
 
 					<div class="w-max flex flex-col mb-1 rounded-sm px-2 py-2 text-xs text-background bg-primary pop">
 						<time class="font-bold">{cell.target}</time>

@@ -22,10 +22,11 @@
 > - `main` ブランチ✅：静的ビルド、任意の静的ホスティングプラットフォームにデプロイ可能。
 > - `cloudflare` ブランチ：内蔵コメントシステムを有効にし、Cloudflare のみでデプロイ可能。
 
-🎬 **ライブデモ**：[Vercel](https://thought-lite.vercel.app/ja/)
+🎬 **ライブデモ**：[Vercel](https://thought-lite.vercel.app/ja)
 
 ## ✨ 機能
 
+- [x] **外観テーマ設定** - ThoughtLite と Catppuccin の4フレーバー、型付き設定の上書き、共有可能なテーマファイル。[設定ガイド](src/content/note/ja/configuration.md#外観テーマ)。
 - [x] **レスポンシブデザイン** - モバイル、タブレット、デスクトップに対応。
 - [x] **ライト / ダークモード** - システムに自動追従し、手動切り替えもサポート。
 - [x] **CSR 動的コンテンツフィルタリング** - History API によるリストフィルタリングとページネーション。
@@ -62,15 +63,11 @@ pnpm dev
 
 ## 🔧 設定
 
-サイト設定および国際化（i18n）設定をカスタマイズするには、以下のファイルを変更してください：
+テーマ関連の構成については、次のドキュメントを参照してください：
 
-- `.env`
-- `astro.config.ts`
-- `site.config.ts`
-
-基本設定については[サイト設定ガイド](src/content/note/ja/configuration.md)を参照してください。
-
-国際化設定については[国際化設定ガイド](src/content/note/ja/internationalization.md)を参照してください。
+- [Astro 設定リファレンス](https://docs.astro.build/ja/reference/configuration-reference/)
+- [サイト設定ガイド](https://thought-lite.vercel.app/ja/note/configuration)
+- [国際化設定ガイド](https://thought-lite.vercel.app/ja/note/internationalization)
 
 ## 💻 コマンド
 
@@ -117,7 +114,7 @@ pnpm install
 - `preface` - 序文、第一印象としてサイトのホームページに表示
 - `information` - 情報、各種説明的なコンテンツを含む
 
-詳細は[コンテンツ作成ガイド](src/content/note/ja/content.md)を参照してください。
+詳細は[コンテンツ作成ガイド](https://thought-lite.vercel.app/ja/note/content)を参照してください。
 
 ## 🤝 貢献
 
@@ -148,7 +145,7 @@ pnpm install
 
 - [Astro Sphere](https://github.com/markhorn-dev/astro-sphere)
 - [astro-vitesse](https://github.com/adrian-ub/astro-vitesse)
-- [Miniblog](https://github.com/nicholasdly/miniblog)
+- [Miniblog v1](https://github.com/nicholasdly/miniblog/tree/v1)
 - [AstroPaper with I18n](https://github.com/yousef8/astro-paper-i18n)
 
 ## 📜 ライセンス

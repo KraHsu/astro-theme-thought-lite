@@ -22,10 +22,11 @@
 > - `main` branch✅: Static build, can be deployed on any static hosting platform.
 > - `cloudflare` branch: Enables built-in comment system, only deployable on Cloudflare.
 
-🎬 **Live Demo**: [Vercel](https://thought-lite.vercel.app/)
+🎬 **Live Demo**: [Vercel](https://thought-lite.vercel.app)
 
 ## ✨ Features
 
+- [x] **Configurable Visual Themes** - Built-in ThoughtLite and all four Catppuccin flavors, typed overrides, and shareable theme modules. [Configuration](src/content/note/en/configuration.md#visual-themes).
 - [x] **Responsive Design** - Adaptive for mobile, tablet, and desktop.
 - [x] **Light / Dark Mode** - Auto-follows system preference with manual toggle support.
 - [x] **CSR Dynamic Content Filtering** - List filtering and pagination via History API.
@@ -62,15 +63,11 @@ pnpm dev
 
 ## 🔧 Configuration
 
-Customize site configuration and internationalization (i18n) by modifying the following files:
+Related theme configuration can be found in the following documents:
 
-- `.env`
-- `astro.config.ts`
-- `site.config.ts`
-
-For basic configuration, refer to the [Site Configuration Guide](src/content/note/en/configuration.md).
-
-For i18n configuration, refer to the [Internationalization Configuration Guide](src/content/note/en/internationalization.md).
+- [Astro Configuration Reference](https://docs.astro.build/en/reference/configuration-reference/)
+- [Site Configuration Guide](https://thought-lite.vercel.app/note/configuration)
+- [Internationalization Configuration Guide](https://thought-lite.vercel.app/note/internationalization)
 
 ## 💻 Commands
 
@@ -117,7 +114,7 @@ Content creation is centralized in the `src/content` directory, mainly including
 - `preface` - Displayed on the homepage as the first impression
 - `information` - Containing various descriptive content
 
-For details, refer to the [Content Creation Guide](src/content/note/en/content.md).
+For details, refer to the [Content Creation Guide](https://thought-lite.vercel.app/note/content).
 
 ## 🤝 Contributing
 
@@ -148,7 +145,7 @@ All kinds of contributions are welcome and appreciated!
 
 - [Astro Sphere](https://github.com/markhorn-dev/astro-sphere)
 - [astro-vitesse](https://github.com/adrian-ub/astro-vitesse)
-- [Miniblog](https://github.com/nicholasdly/miniblog)
+- [Miniblog v1](https://github.com/nicholasdly/miniblog/tree/v1)
 - [AstroPaper with I18n](https://github.com/yousef8/astro-paper-i18n)
 
 ## 📜 License

@@ -22,10 +22,11 @@
 > - `main` 分支✅：静态化构建，可部署在任何静态托管平台。
 > - `cloudflare` 分支：启用内置评论系统，仅支持在 Cloudflare 部署。
 
-🎬 **在线演示**：[Vercel](https://thought-lite.vercel.app/zh-cn/)
+🎬 **在线演示**：[Vercel](https://thought-lite.vercel.app/zh-cn)
 
 ## ✨ 特性
 
+- [x] **可配置外观主题** - 内置 ThoughtLite 与 Catppuccin 四种变体，支持类型安全的局部覆盖和独立主题文件。[配置指南](src/content/note/zh-cn/configuration.md#外观主题)。
 - [x] **响应式设计** - 移动端、平板、桌面自适应。
 - [x] **亮色 / 深色模式** - 自动跟随系统，并支持手动切换。
 - [x] **CSR 动态内容筛选** - 通过 History API 实现的列表筛选和分页。
@@ -62,15 +63,11 @@ pnpm dev
 
 ## 🔧 配置
 
-自定义站点配置及国际化（i18n）配置，请修改以下文件：
+主题相关配置请参阅以下文档：
 
-- `.env`
-- `astro.config.ts`
-- `site.config.ts`
-
-基础配置请参阅[站点配置指南](src/content/note/zh-cn/configuration.md)。
-
-国际化配置请参阅[国际化配置指南](src/content/note/zh-cn/internationalization.md)。
+- [Astro 配置参考](https://docs.astro.build/zh-cn/reference/configuration-reference/)
+- [站点配置指南](https://thought-lite.vercel.app/zh-cn/note/configuration)
+- [国际化配置指南](https://thought-lite.vercel.app/zh-cn/note/internationalization)
 
 ## 💻 命令
 
@@ -117,7 +114,7 @@ pnpm install
 - `preface` - 序文，作为第一印象在站点首页展示
 - `information` - 信息，包含各类说明性内容
 
-详情请参阅[内容创作指南](src/content/note/zh-cn/content.md)。
+详情请参阅[内容创作指南](https://thought-lite.vercel.app/zh-cn/note/content)。
 
 ## 🤝 贡献
 
@@ -148,7 +145,7 @@ pnpm install
 
 - [Astro Sphere](https://github.com/markhorn-dev/astro-sphere)
 - [astro-vitesse](https://github.com/adrian-ub/astro-vitesse)
-- [Miniblog](https://github.com/nicholasdly/miniblog)
+- [Miniblog v1](https://github.com/nicholasdly/miniblog/tree/v1)
 - [AstroPaper with I18n](https://github.com/yousef8/astro-paper-i18n)
 
 ## 📜 许可证

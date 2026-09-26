@@ -1,6 +1,10 @@
-import siteConfig from "./src/utils/config";
+import siteConfig from "./src/lib/config";
 
 const config = siteConfig({
+	theme: {
+		preset: "catppuccin",
+		mode: "system"
+	},
 	title: "枢衡の巢",
 	prologue: "We are all apprentices in a craft where no one ever becomes a master. \n—- Ernest Hemingway",
 	author: {
@@ -13,6 +17,7 @@ const config = siteConfig({
 		type: "CC BY-NC-ND 4.0",
 		year: "2025"
 	},
+	timezone: "Asia/Shanghai",
 	i18n: {
 		locales: ["en", "zh-cn"],
 		defaultLocale: "zh-cn"

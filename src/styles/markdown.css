@@ -1,6 +1,6 @@
 @layer components {
 	.markdown {
-		line-height: 1.75;
+		line-height: var(--markdown-line-height);
 		word-wrap: break-word;
 		user-select: text;
 
@@ -26,11 +26,11 @@
 		}
 
 		hr {
-			border-bottom: 1px dashed var(--remark-color);
+			border-bottom: 1px dashed var(--secondary-color);
 		}
 
 		a {
-			color: var(--catppuccin-sapphire);
+			color: var(--link-color);
 			text-decoration: underline transparent 0.05em;
 			text-underline-offset: 0.15em;
 			transition: text-decoration-color 0.15s ease-in-out;
@@ -41,6 +41,7 @@
 
 			&[target="_blank"]::after {
 				content: "\202F \202F";
+				font-family: var(--font-maple-mono-nf-cn);
 				white-space: pre;
 				font-size: 0.8em;
 				vertical-align: 0.05em;
@@ -48,6 +49,7 @@
 
 			&:not([target="_blank"], [data-footnote-ref], [data-footnote-backref])::after {
 				content: "\202F \202F";
+				font-family: var(--font-maple-mono-nf-cn);
 				white-space: pre;
 				font-size: 0.85em;
 				vertical-align: 0.05em;
@@ -55,6 +57,7 @@
 
 			&[href^="mailto:"]::after {
 				content: "\202F󱃝 \202F";
+				font-family: var(--font-maple-mono-nf-cn);
 				white-space: pre;
 				font-size: 0.9em;
 				vertical-align: -0.1em;
@@ -72,6 +75,7 @@
 
 				&::after {
 					content: "󰌷 ";
+					font-family: var(--font-maple-mono-nf-cn);
 					margin: 0 0.3em;
 					font-size: 0.8em;
 					font-weight: normal;
@@ -295,7 +299,7 @@
 			margin-top: 2.5em;
 			border-top: 4px dotted var(--weak-color);
 			padding-top: 1.5em;
-			color: var(--remark-color);
+			color: var(--secondary-color);
 			font-size: 0.8em;
 
 			ol {
@@ -336,19 +340,19 @@
 		}
 
 		.markdown-alert-tip {
-			--alert-color: var(--catppuccin-green);
+			--alert-color: var(--success-color);
 		}
 
 		.markdown-alert-important {
-			--alert-color: var(--catppuccin-blue);
+			--alert-color: var(--info-color);
 		}
 
 		.markdown-alert-warning {
-			--alert-color: var(--catppuccin-yellow);
+			--alert-color: var(--warning-color);
 		}
 
 		.markdown-alert-caution {
-			--alert-color: var(--catppuccin-red);
+			--alert-color: var(--danger-color);
 		}
 
 		.markdown-alert-note,
