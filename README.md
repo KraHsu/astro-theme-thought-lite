@@ -26,6 +26,7 @@
 
 ## ✨ Features
 
+- [x] **Artalk Comments** - Optional self-hosted comments, voting, statistics, math, and image zoom. [Setup guide](src/content/note/en/artalk.md).
 - [x] **Responsive Design** - Adaptive for mobile, tablet, and desktop.
 - [x] **Light / Dark Mode** - Auto-follows system preference with manual toggle support.
 - [x] **CSR Dynamic Content Filtering** - List filtering and pagination via History API.

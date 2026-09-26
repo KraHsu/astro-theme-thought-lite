@@ -27,6 +27,7 @@ The theme's custom configuration is located in the `site.config.ts` file in the 
 | `heatmap` | `Heatmap` | Heatmap display configuration. |
 | `feed.section` | `"*" \| Section[]` | Content sections included in the feed; `*` indicates all. |
 | `feed.limit` | `number` | Maximum number of items displayed in the feed. |
+| `comments` | `ArtalkOptions \| false` | Optional [Artalk comments](artalk); disabled when omitted. |
 | `latest` | `"*" \| Section[]` | Sections displayed in the "Latest" on the homepage; `*` indicates all. |
 
 ### Type Descriptions

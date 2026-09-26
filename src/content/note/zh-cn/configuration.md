@@ -27,6 +27,7 @@ toc: true
 | `heatmap` | `Heatmap` | 热力图显示配置。 |
 | `feed.section` | `"*" \| Section[]` | 订阅源包含的内容板块；`*` 表示全部。 |
 | `feed.limit` | `number` | 订阅源中显示的最大条目数。 |
+| `comments` | `ArtalkOptions \| false` | 可选的 [Artalk 评论](artalk)，不配置时关闭。 |
 | `latest` | `"*" \| Section[]` | 首页「最新内容」展示的板块；`*` 表示全部。 |
 
 ### 类型说明

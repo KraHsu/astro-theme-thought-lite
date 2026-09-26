@@ -1,0 +1,13 @@
+services:
+  artalk:
+    image: artalk/artalk-go:2.10.0
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:23366:23366"
+    volumes:
+      - ./data:/data
+    environment:
+      TZ: ${TZ:-UTC}
+      ATK_LOCALE: ${ARTALK_LOCALE:-en}
+      ATK_SITE_DEFAULT: ${ARTALK_SITE:-ThoughtLite}
+      ATK_SITE_URL: ${BLOG_URL:?Set BLOG_URL to your public blog URL}

@@ -43,3 +43,13 @@ sensitive:
 statistics:
   other: '{count} 文字を書いた'
 theme: 'テーマ: ThoughtLite'
+comments:
+  title: "コメント"
+  count: "コメント："
+  views: "閲覧数："
+  upvote: "高評価"
+  downvote: "低評価"
+  loading: "コメントを読み込み中…"
+  error: "コメントを読み込めませんでした。もう一度お試しください。"
+  retry: "再試行"
+  nojs: "コメントの閲覧・投稿には JavaScript を有効にしてください。"

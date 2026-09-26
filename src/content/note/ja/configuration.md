@@ -27,6 +27,7 @@ toc: true
 | `heatmap` | `Heatmap` | ヒートマップの表示設定。 |
 | `feed.section` | `"*" \| Section[]` | フィードに含まれるコンテンツセクション；`*` はすべてを示します。 |
 | `feed.limit` | `number` | フィードに表示される最大アイテム数。 |
+| `comments` | `ArtalkOptions \| false` | 任意の [Artalk コメント](artalk)。省略時は無効。 |
 | `latest` | `"*" \| Section[]` | ホームページの「最新記事」に表示されるセクション；`*` はすべてを示します。 |
 
 ### 型の説明

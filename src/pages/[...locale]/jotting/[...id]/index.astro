@@ -3,6 +3,7 @@ import { getCollection, render } from "astro:content";
 import config, { monolocale } from "$config";
 import Time from "$lib/time";
 import Base from "$layouts/Base.astro";
+import Artalk from "$components/Artalk.astro";
 import Position from "$components/Position.astro";
 import Icon from "$components/Icon.svelte";
 import Sensitive from "$components/Sensitive.svelte";
@@ -61,6 +62,7 @@ const t = i18nit(locale);
 
 		<Sensitive {locale} back={getRelativeLocaleUrl(locale, "/jotting")} sensitive={jotting.data.sensitive} client:load>
 			<section id="markdown-content" class="markdown"><Content /></section>
+			<Artalk section="jotting" {locale} title={jotting.data.title} comments={jotting.data.comments} commentKey={jotting.data.commentKey} />
 		</Sensitive>
 
 		<Position {locale} />

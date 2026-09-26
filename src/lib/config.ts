@@ -1,3 +1,5 @@
+import type { ArtalkOptions } from "./artalk";
+
 /**
  * Creative Commons 4.0 License Type
  */
@@ -98,6 +100,9 @@ interface SiteConfigOptions<Locales extends readonly string[] = readonly string[
 
 	/** Latest Content Display */
 	latest?: "*" | Section[];
+
+	/** Optional self-hosted comments. Omit or set false to disable. */
+	comments?: ArtalkOptions | false;
 }
 
 /**
