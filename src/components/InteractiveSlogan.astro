@@ -1,0 +1,105 @@
+---
+interface Props {
+	text: string;
+	locale: string;
+}
+
+const { text, locale } = Astro.props;
+const hint = locale === "zh-cn" ? "轻触文字，泛起涟漪" : "Tap the words to make a ripple";
+---
+
+<thought-slogan class="block me-auto min-w-0 max-w-full">
+	<button type="button" class="slogan font-cursive font-thin text-xl sm:text-2xl leading-loose" aria-label={text} aria-describedby="slogan-hint" title={hint}>
+		{text.split("\n").map(line => <span class="slogan__line">{line.split(/(\s+)/).map(word => (word.trim() ? <span class="slogan__word">{word}</span> : word))}</span>)}
+	</button>
+	<span id="slogan-hint" class="sr-only">{hint}</span>
+</thought-slogan>
+
+<script>
+	class ThoughtSlogan extends HTMLElement {
+		private events?: AbortController;
+		private animations: Animation[] = [];
+
+		connectedCallback() {
+			this.events?.abort();
+			this.events = new AbortController();
+			this.querySelector("button")?.addEventListener("click", event => this.ripple(event), { signal: this.events.signal });
+		}
+
+		private ripple(event: MouseEvent) {
+			this.animations.forEach(animation => animation.cancel());
+			this.animations = [];
+			if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+			const bounds = this.querySelector("button")!.getBoundingClientRect();
+			// Keyboard activation has no pointer position, so start from the center.
+			const origin = event.detail > 0 ? { x: event.clientX, y: event.clientY } : { x: bounds.left + bounds.width / 2, y: bounds.top + bounds.height / 2 };
+			const words = Array.from(this.querySelectorAll<HTMLElement>(".slogan__word"), word => {
+				const rect = word.getBoundingClientRect();
+				return { word, distance: Math.hypot(rect.left + rect.width / 2 - origin.x, rect.top + rect.height / 2 - origin.y) };
+			});
+			if (!words.length) return;
+			const nearest = Math.min(...words.map(({ distance }) => distance));
+			const spread = Math.max(...words.map(({ distance }) => distance)) - nearest;
+			const pace = Math.min(1.1, 600 / (spread || 1));
+			this.animations = words.map(({ word, distance }) =>
+				word.animate(
+					[
+						{ transform: "translateY(0)", color: "var(--primary-color)" },
+						{ transform: "translateY(-6px)", color: "var(--accent-color)", offset: 0.4 },
+						{ transform: "translateY(0)", color: "var(--primary-color)" }
+					],
+					{ duration: 520, delay: (distance - nearest) * pace, easing: "ease-in-out" }
+				)
+			);
+		}
+
+		disconnectedCallback() {
+			this.events?.abort();
+			this.animations.forEach(animation => animation.cancel());
+			this.animations = [];
+		}
+	}
+
+	if (!customElements.get("thought-slogan")) customElements.define("thought-slogan", ThoughtSlogan);
+</script>
+
+<style>
+	.slogan {
+		display: block;
+		max-width: 100%;
+		text-align: start;
+		border-radius: 0.25rem;
+		-webkit-tap-highlight-color: transparent;
+	}
+
+	.slogan__line {
+		display: block;
+		min-height: 1lh;
+	}
+
+	.slogan__word {
+		display: inline-block;
+		transition:
+			transform 220ms ease,
+			color 220ms ease;
+	}
+
+	.slogan:active {
+		color: var(--accent-color);
+	}
+
+	@media (hover: hover) {
+		.slogan__word:hover {
+			color: var(--accent-color);
+			transform: translateY(-3px);
+		}
+	}
+
+	@media (prefers-reduced-motion: reduce) {
+		.slogan__word,
+		.slogan__word:hover {
+			transition: none;
+			transform: none;
+		}
+	}
+</style>
