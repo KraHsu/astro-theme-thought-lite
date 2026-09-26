@@ -5,6 +5,7 @@ import config, { monolocale } from "$config";
 import Time from "$lib/time";
 import Base from "$layouts/Base.astro";
 import TOC from "$components/TOC.astro";
+import Artalk from "$components/Artalk.astro";
 import Position from "$components/Position.astro";
 import Icon from "$components/Icon.svelte";
 import Sensitive from "$components/Sensitive.svelte";
@@ -92,6 +93,7 @@ const t = i18nit(locale);
 					{(note.data.toc || !!note.data.series) && <TOC headings={note.data.toc ? headings : undefined} {locale} {series} />}
 				</div>
 			</div>
+			<Artalk section="note" {locale} title={note.data.title} comments={note.data.comments} commentKey={note.data.commentKey} />
 		</Sensitive>
 
 		<Position {locale} toc={note.data.toc} series={!!note.data.series} />

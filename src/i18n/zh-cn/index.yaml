@@ -43,3 +43,13 @@ sensitive:
 statistics:
   other: 写下 {count} 字
 theme: '主题: ThoughtLite'
+comments:
+  title: "评论"
+  count: "评论："
+  views: "浏览："
+  upvote: "赞同"
+  downvote: "不赞同"
+  loading: "正在加载评论…"
+  error: "评论加载失败，请重试。"
+  retry: "重试"
+  nojs: "请启用 JavaScript 以查看和发表评论。"

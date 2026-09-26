@@ -31,6 +31,7 @@
 		"dev": "astro dev",
 		"check": "astro check",
 		"test:theme": "node --import tsx tests/theme.test.ts",
+		"test:artalk": "tsx --test tests/artalk.test.ts",
 		"build": "astro build",
 		"preview": "astro preview",
 		"format": "biome format --write",
@@ -39,6 +40,7 @@
 		"prepare": "husky"
 	},
 	"dependencies": {
+		"@artalk/plugin-katex": "^0.2.5",
 		"@astrojs/markdown-remark": "^7.1.2",
 		"@astrojs/mdx": "^5.0.6",
 		"@astrojs/sitemap": "^3.7.2",
@@ -60,6 +62,7 @@
 		"@tuyuritio/remark-spoiler": "^0.0.2",
 		"@tuyuritio/shiki-code-copy": "^1.0.0",
 		"@types/unist": "^3.0.3",
+		"artalk": "2.10.0",
 		"astro": "^6.3.7",
 		"feed": "^5.2.1",
 		"katex": "^0.17.0",

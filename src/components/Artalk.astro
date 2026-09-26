@@ -1,0 +1,64 @@
+---
+import config from "$config";
+import { resolveArtalk, type ArtalkPage } from "$lib/artalk";
+import i18nit from "$i18n";
+
+type Props = Omit<ArtalkPage, "url">;
+
+const settings = resolveArtalk(config.comments, config.title, { ...Astro.props, url: Astro.url });
+const t = i18nit(Astro.props.locale);
+---
+
+{
+	settings && (
+		<artalk-comments id="comments" class="block mt-8 border-t border-shadow pt-6" data-settings={JSON.stringify(settings)} data-error={t("comments.error")}>
+			<section aria-labelledby="comments-heading">
+				<header class="flex flex-wrap items-center justify-between gap-3 mb-4">
+					<h2 id="comments-heading" class="text-xl">
+						{t("comments.title")}
+					</h2>
+					{settings.statistics && (
+						<p class="flex gap-4 text-sm text-secondary">
+							<span class="inline-flex gap-1">
+								{t("comments.count")}{" "}
+								<span data-artalk-count data-page-key={settings.client.pageKey}>
+									—
+								</span>
+							</span>
+							<span class="inline-flex gap-1">
+								{t("comments.views")}{" "}
+								<span data-artalk-views data-page-key={settings.client.pageKey}>
+									—
+								</span>
+							</span>
+						</p>
+					)}
+				</header>
+				{settings.pageVote && (
+					<div class="flex gap-4 text-sm mb-4">
+						<button type="button" data-artalk-up disabled aria-pressed="false" class="inline-flex items-center gap-2 border border-shadow rounded-sm px-3 py-1" aria-label={t("comments.upvote")}>
+							{t("comments.upvote")} <span data-artalk-up-count>—</span>
+						</button>
+						<button type="button" data-artalk-down disabled aria-pressed="false" class="inline-flex items-center gap-2 border border-shadow rounded-sm px-3 py-1" aria-label={t("comments.downvote")}>
+							{t("comments.downvote")} <span data-artalk-down-count>—</span>
+						</button>
+					</div>
+				)}
+				<div data-artalk-mount />
+				<p data-artalk-status role="status" class="text-sm text-secondary">
+					{t("comments.loading")}
+				</p>
+				<button type="button" data-artalk-retry hidden class="underline text-sm">
+					{t("comments.retry")}
+				</button>
+				<noscript>
+					<p>{t("comments.nojs")}</p>
+				</noscript>
+			</section>
+		</artalk-comments>
+	)
+}
+
+<script>
+	import "../scripts/artalk";
+</script>

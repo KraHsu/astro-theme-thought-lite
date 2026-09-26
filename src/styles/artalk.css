@@ -1,0 +1,46 @@
+/* Follow ThoughtLite's semantic colors, including any site-level palette overrides. */
+.artalk,
+.artalk.atk-dark-mode,
+.atk-layer-wrap,
+.atk-layer-wrap.atk-dark-mode {
+	--at-color-font: var(--primary-color);
+	--at-color-deep: var(--primary-color);
+	--at-color-sub: var(--secondary-color);
+	--at-color-grey: var(--secondary-color);
+	--at-color-meta: var(--secondary-color);
+	--at-color-border: var(--shadow-color);
+	--at-color-bg: var(--background-color);
+	--at-color-bg-grey: var(--block-color);
+	--at-color-bg-transl: var(--background-color);
+	--at-color-bg-grey-transl: var(--block-color);
+	--at-color-main: var(--primary-color);
+	--at-color-gradient: linear-gradient(180deg, transparent, var(--background-color));
+	font-family: inherit;
+}
+
+artalk-comments {
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+artalk-comments .artalk-voted {
+	background: var(--primary-color);
+	color: var(--background-color);
+}
+
+artalk-comments .katex-display {
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+artalk-comments button:focus-visible {
+	outline: 2px solid var(--primary-color);
+	outline-offset: 3px;
+}
+
+/* Artalk's primary buttons assume a white label; our primary color changes with the theme. */
+.artalk .atk-main-editor > .atk-bottom .atk-send-btn {
+	color: var(--background-color);
+	align-items: center;
+	justify-content: center;
+}

@@ -27,6 +27,7 @@
 ## ✨ 特性
 
 - [x] **可配置外观主题** - 内置 ThoughtLite 与 Catppuccin 四种变体，支持类型安全的局部覆盖和独立主题文件。[配置指南](src/content/note/zh-cn/configuration.md#外观主题)。
+- [x] **Artalk 评论** - 可选的自托管评论、投票、统计、公式和图片缩放。[配置指南](docs/artalk/zh-cn.md)。
 - [x] **响应式设计** - 移动端、平板、桌面自适应。
 - [x] **亮色 / 深色模式** - 自动跟随系统，并支持手动切换。
 - [x] **CSR 动态内容筛选** - 通过 History API 实现的列表筛选和分页。

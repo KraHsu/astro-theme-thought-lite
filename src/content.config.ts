@@ -15,6 +15,8 @@ const note = defineCollection({
 		series: z.string().optional(), // Series name for grouped posts
 		tags: z.array(z.string()).optional(), // Array of topic tags
 		description: z.string().optional(), // Post description/excerpt
+		comments: z.boolean().default(true), // Enable comments when configured site-wide
+		commentKey: z.string().trim().min(1).optional(), // Stable Artalk page identity
 		sensitive: z.boolean().default(false), // Marks content as sensitive
 		toc: z.boolean().default(false), // Whether to show table of contents
 		top: z.number().int().nonnegative().default(0), // Top priority for sorting (higher is more important)
@@ -34,6 +36,8 @@ const jotting = defineCollection({
 		timestamp: z.date(), // Publication date (required)
 		tags: z.array(z.string()).optional(), // Array of topic tags
 		description: z.string().optional(), // Brief description
+		comments: z.boolean().default(true), // Enable comments when configured site-wide
+		commentKey: z.string().trim().min(1).optional(), // Stable Artalk page identity
 		sensitive: z.boolean().default(false), // Marks content as sensitive
 		top: z.number().int().nonnegative().default(0), // Top priority for sorting (higher is more important)
 		draft: z.boolean().default(false) // Draft status

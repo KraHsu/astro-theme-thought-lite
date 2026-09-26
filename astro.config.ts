@@ -105,6 +105,8 @@ export default defineConfig({
 		sitemap(),
 		swup({
 			globalInstance: true,
+			// Keep lazily loaded comment styles across client-side navigation.
+			updateHead: { persistTags: "link[data-artalk-style]" },
 			preload: false,
 			smoothScrolling: false,
 			progress: true

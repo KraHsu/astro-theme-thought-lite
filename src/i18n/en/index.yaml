@@ -51,3 +51,13 @@ statistics:
   one: Wrote {count} word
   other: Wrote {count} words
 theme: 'Theme: ThoughtLite'
+comments:
+  title: "Comments"
+  count: "Comments:"
+  views: "Views:"
+  upvote: "Like"
+  downvote: "Dislike"
+  loading: "Loading comments…"
+  error: "Could not load comments. Please try again."
+  retry: "Retry"
+  nojs: "Enable JavaScript to read and write comments."
