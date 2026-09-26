@@ -34,8 +34,15 @@ const config = siteConfig({
 		section: "*",
 		limit: 20
 	},
-	// Optional: connect a self-hosted Artalk server. See the Artalk guide.
-	// comments: { provider: "artalk", server: "https://comments.example.com", site: "ThoughtLite" },
+	comments: {
+		provider: "artalk",
+		server: "https://blog.krahsu.top/artalk",
+		site: "KraHsu Blog",
+		options: {
+			imgUpload: true,
+			imgLazyLoad: "native"
+		}
+	},
 	latest: "*"
 });
 
