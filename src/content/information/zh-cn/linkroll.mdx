@@ -2,31 +2,27 @@ import Linkroll from "$components/Linkroll.astro";
 
 export const links = [
 	{
-		title: "Astro",
-		url: "https://astro.build/",
-		image: "https://astro.build/favicon.svg",
-		description: "The web framework for content-driven websites.",
-		type: "resources"
+		title: "Hatrixの窝",
+		url: "https://hatrix.site/",
+		image: "https://hatrix.site/favicon.svg",
+		description: "hatrix.site",
+		type: "friends"
 	},
 	{
-		title: "Svelte",
-		url: "https://svelte.dev/",
-		image: "https://svelte.dev/favicon.png",
-		description: "Web development for the rest of us.",
-		type: "technology"
-	},
-	{
-		title: "GitHub",
-		url: "https://github.com",
-		image: "https://github.githubassets.com/favicons/favicon.svg",
-		description: "The future of building happens together.",
-		type: "insights"
+		title: "記緒漂流",
+		url: "https://ttio.cc/",
+		image: "https://ttio.cc/favicon-96x96.png",
+		description: "于记忆之川，泛思绪之舟。",
+		type: "seniors"
 	}
 ];
 
-笔者计划将友链按照客观价值与主观价值进行分类。
-不过，由于本站刚刚重启，此部分暂时留空。
+### 朋友们
+
+<Linkroll locale={props.locale} links={links.filter(link => link.type === "friends")} />
+
+### 前辈们
+
+<Linkroll locale={props.locale} links={links.filter(link => link.type === "seniors")} />
 
 如果您认为本站具有分享价值，欢迎通过 [G-Mail](mailto:charles040318@gmail.com) 或 [QQ-Mail](mailto:1191393280@qq.com) 与我联系。
-
-{/* <Linkroll locale={props.locale} links={links} /> */}
