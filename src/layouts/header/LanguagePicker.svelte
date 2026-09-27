@@ -4,7 +4,7 @@ import { onMount } from "svelte";
 import config from "$config";
 import i18nit from "$i18n";
 
-let { locale }: { locale: string } = $props();
+let { locale, initialPath }: { locale: string; initialPath: string } = $props();
 
 let path: string = $state("");
 
@@ -23,5 +23,5 @@ onMount(() => {
 </script>
 
 {#each config.i18n.locales as target}
-	<a data-no-swup href={getRelativeLocaleUrl(target, path)} lang={target} aria-current={locale === target ? "page" : undefined} class={locale === target ? "font-bold sm:bg-primary sm:text-background pointer-events-none" : ""}>{i18nit(target)("language")}</a>
+	<a data-no-swup href={getRelativeLocaleUrl(target, path || initialPath)} lang={target} aria-current={locale === target ? "page" : undefined} class={locale === target ? "font-bold sm:bg-primary sm:text-background pointer-events-none" : ""}>{i18nit(target)("language")}</a>
 {/each}

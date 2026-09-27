@@ -21,6 +21,7 @@ const routes: { path: string; extra?: string[]; icon: `${string}--${string}`; la
 ];
 
 const route = Astro.url.pathname;
+const localePath = locale === config.i18n.defaultLocale ? route : route.slice(locale.length + 1) || "/";
 ---
 
 <style>
@@ -68,7 +69,7 @@ const route = Astro.url.pathname;
 				!monolocale && (
 					<Menu label="Language switcher">
 						<Icon name="lucide--earth" slot="trigger" />
-						<LanguagePicker {locale} client:load />
+						<LanguagePicker {locale} initialPath={localePath} client:load />
 					</Menu>
 				)
 			}

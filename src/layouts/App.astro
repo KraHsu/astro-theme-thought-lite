@@ -19,7 +19,7 @@ const theme = resolveTheme(config.theme);
 const route = Astro.url.pathname.slice(`/${locale === config.i18n.defaultLocale ? "" : locale}`.length);
 ---
 
-<html lang={locale} dir={["ar", "he", "fa", "ur"].includes(locale) ? "rtl" : "ltr"} data-visual-theme={theme.name} data-color-mode={theme.mode}>
+<html lang={locale} dir={["ar", "he", "fa", "ur"].includes(locale) ? "rtl" : "ltr"} data-visual-theme={theme.name} data-color-mode={theme.mode} data-locales={config.i18n.locales.join(",")} data-default-locale={config.i18n.defaultLocale}>
 	<head>
 		<title>{subtitle && `${subtitle} |`} {title}</title>
 		<meta name="description" content={description} />

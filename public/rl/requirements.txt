@@ -1,0 +1,3 @@
+# Versions used for the recorded results and plot; Python 3.10+.
+numpy==1.26.4
+matplotlib==3.6.3

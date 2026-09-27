@@ -33,6 +33,7 @@ import copy from "@tuyuritio/shiki-code-copy";
 import reading from "./src/lib/reading";
 import inlineDisplayMath from "./src/lib/inline-display-math";
 import { resolveTheme } from "./src/lib/theme";
+import { ignoreCrossLocaleVisit } from "./src/lib/locale-navigation";
 
 import siteConfig from "./site.config";
 import ZeoSevenFonts from "./src/fonts/zeo-seven-fonts";
@@ -105,6 +106,7 @@ export default defineConfig({
 		sitemap(),
 		swup({
 			globalInstance: true,
+			ignore: ignoreCrossLocaleVisit,
 			// Keep lazily loaded comment styles across client-side navigation.
 			updateHead: { persistTags: "link[data-artalk-style]" },
 			preload: false,

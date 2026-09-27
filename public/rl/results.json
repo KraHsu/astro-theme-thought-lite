@@ -1,0 +1,86 @@
+{
+	"settings": {
+		"gamma": 0.9,
+		"states": ["A", "B", "C", "T"],
+		"actions": ["R", "D"],
+		"numpy": "1.26.4",
+		"mc_seeds": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+		"control_seeds": [0, 1, 2, 3, 4],
+		"control_episodes": 10000,
+		"mc_basic_rounds": 6,
+		"mc_basic_samples_per_pair": 300,
+		"horizon": 200,
+		"initial_return_tail_bound": 7.055079108655369e-9,
+		"first_visit_tail_bound_in_this_grid": 7.838976787394855e-9,
+		"sa_seeds": "1000..1199",
+		"sa_samples": 5000
+	},
+	"policy_evaluation": {
+		"value": [0.8181818181818181, 0.9090909090909091, 0.9090909090909091, 0.0],
+		"q": [[0.8181818181818181, 0.8181818181818181], [0.8181818181818181, 1.0], [1.0, 0.8181818181818181], [0.0, 0.0]],
+		"bellman_residual": 0.0
+	},
+	"planning": {
+		"optimal_value": [0.9, 1.0, 1.0, 0.0],
+		"greedy_actions": ["R", "D", "R", "R"],
+		"vi_sweeps": 2,
+		"pi_rounds": 3,
+		"mpi_rounds": 1,
+		"enumerated_policies": 8
+	},
+	"mc_prediction": {
+		"100": {
+			"mean_state_rmse": 0.012451230619294948,
+			"std_across_seeds": 0.006801304267588582
+		},
+		"1000": {
+			"mean_state_rmse": 0.0037029296290814772,
+			"std_across_seeds": 0.0019011363744444471
+		},
+		"10000": {
+			"mean_state_rmse": 0.001293023216815641,
+			"std_across_seeds": 0.0005273723737102531
+		}
+	},
+	"mc_control": {
+		"basic": {
+			"greedy_policy_max_gaps": [0.0, 0.0, 0.0, 0.0, 0.0],
+			"behavior_value_at_A": [0.9, 0.9, 0.9, 0.9, 0.9],
+			"truncated_episodes": [0, 0, 0, 0, 0],
+			"min_pair_visits": [1800, 1800, 1800, 1800, 1800]
+		},
+		"exploring_starts": {
+			"greedy_policy_max_gaps": [0.0, 0.0, 0.0, 0.0, 0.0],
+			"behavior_value_at_A": [0.9, 0.9, 0.9, 0.9, 0.9],
+			"truncated_episodes": [1, 0, 3, 5, 0],
+			"min_pair_visits": [1614, 1579, 1628, 1619, 1622]
+		},
+		"epsilon_greedy": {
+			"greedy_policy_max_gaps": [0.0, 0.0, 0.0, 0.0, 0.0],
+			"behavior_value_at_A": [0.8901098901098902, 0.8901098901098902, 0.8901098901098902, 0.8901098901098902, 0.8901098901098902],
+			"truncated_episodes": [0, 0, 0, 0, 0],
+			"min_pair_visits": [509, 425, 207, 109, 229]
+		}
+	},
+	"stochastic_approximation": {
+		"1/n": {
+			"final_mean": 0.8180233678398718,
+			"final_rmse": 0.0014721432594421743
+		},
+		"constant 0.05": {
+			"final_mean": 0.8159705355164257,
+			"final_rmse": 0.01667168204400234
+		},
+		"1/(n+1)^2": {
+			"final_mean": 0.40825680250416907,
+			"final_rmse": 0.41058191206893885
+		},
+		"theory": {
+			"return_mean": 0.8181818181818182,
+			"return_variance": 0.011250781304257162,
+			"sample_mean_rmse": 0.001500052086046159,
+			"constant_step_asymptotic_rmse": 0.016984745270507588,
+			"too_fast_expected_limit": 0.4090909090909091
+		}
+	}
+}

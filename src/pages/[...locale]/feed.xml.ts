@@ -86,14 +86,15 @@ export const GET: APIRoute = async ({ site, params }) => {
 
 	// Create an Astro container for rendering content
 	const container = await AstroContainer.create();
+	const feedContent = new Map<string, string>();
 	await Promise.all(
 		items.map(async item => {
 			if (item.rendered) {
 				// Render content for each item
 				const content = await container.renderToString((await render(item)).Content);
 
-				// Rewrite relative paths to absolute URLs for media assets
-				item.rendered.html = content.replace(/(?<=src=")\/(?!\/)([^"]+)/g, `${site?.origin}/$1`);
+				// Keep feed-only URLs separate from the shared content entry used by article pages.
+				feedContent.set(item.id, content.replace(/(?<=src=")\/(?!\/)([^"]+)/g, `${site?.origin}/$1`));
 			}
 		})
 	);
@@ -105,7 +106,7 @@ export const GET: APIRoute = async ({ site, params }) => {
 			title: item.data.title, // Post title
 			link: (<any>item).link, // URL to the post
 			date: item.data.timestamp, // Publication date
-			content: item.data.sensitive ? t("sensitive.feed", { link: (<any>item).link }) : item.rendered?.html, // Rendered content
+			content: item.data.sensitive ? t("sensitive.feed", { link: (<any>item).link }) : (feedContent.get(item.id) ?? item.rendered?.html), // Rendered content
 			description: item.data.description, // Summary of the post
 			category: item.data.tags?.map((tag: any) => ({ term: tag })) // Tags as categories
 		});

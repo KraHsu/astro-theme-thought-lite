@@ -32,6 +32,7 @@
 		"check": "astro check",
 		"test:theme": "node --import tsx tests/theme.test.ts",
 		"test:artalk": "tsx --test tests/artalk.test.ts",
+		"test:locale": "tsx --test tests/locale-navigation.test.ts",
 		"build": "astro build",
 		"preview": "astro preview",
 		"format": "biome format --write",
