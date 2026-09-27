@@ -106,6 +106,8 @@ export default defineConfig({
 		sitemap(),
 		swup({
 			globalInstance: true,
+			// Revalidate visited pages through HTTP instead of reusing a session-old HTML copy.
+			cache: false,
 			ignore: ignoreCrossLocaleVisit,
 			// Keep lazily loaded comment styles across client-side navigation.
 			updateHead: { persistTags: "link[data-artalk-style]" },
